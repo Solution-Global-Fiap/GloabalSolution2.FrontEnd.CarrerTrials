@@ -9,6 +9,7 @@
   font-weight: 400;
 
   --bg: #f5f7fa;
+  --bg-inverted: #0b0f19;
   --bg-section: #ffffff;
   --bg-card: #ffffff;
 
@@ -29,6 +30,7 @@
 
 .dark {
   --bg: #0b0f19;
+  --bg-inverted: #f5f7fa;
   --bg-section: #101622;
   --bg-card: #161d2b;
 
