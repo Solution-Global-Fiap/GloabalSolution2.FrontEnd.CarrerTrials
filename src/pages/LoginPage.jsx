@@ -21,7 +21,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
 
   function navigateHome() {
-    navigate(Routes.Chat, { replace: true });
+    navigate(Routes.Challenges, { replace: true });
   }
 
   useEffect(() => {
@@ -80,7 +80,7 @@ export default function LoginPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-(--primary) hover:bg-[var(--primary-hover)] text-white"
+                className="w-full bg-(--primary) hover:bg-(--primary-hover) text-white"
               >
                 Entrar
               </Button>

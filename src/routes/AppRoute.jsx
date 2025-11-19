@@ -3,8 +3,11 @@ import { Routes } from "./routes.js";
 import LandingPage from "../pages/LandingPage.jsx";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
 import LoginPage from "../pages/LoginPage.jsx";
-import ChatPage from "../pages/ChatPage.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
+import MainLayout from "../pages/layouts/MainLayout.jsx";
+import ChallengesPage from "../pages/ChallengesPage.jsx";
+import ComunityPage from "../pages/ComunityPage.jsx";
+import ProfilePage from "../pages/ProfilePage.jsx";
 
 
 const router = createBrowserRouter([
@@ -17,8 +20,21 @@ const router = createBrowserRouter([
     Component: ProtectedRoute,
     children: [
       {
-        path: Routes.Chat,
-        Component: ChatPage
+        Component: MainLayout,
+        children: [
+          {
+            path: Routes.Challenges,
+            Component: ChallengesPage
+          },
+            {
+            path: Routes.Comunity,
+            Component: ComunityPage
+          },
+          {
+            path: Routes.Profile,
+            Component: ProfilePage
+          }
+        ]
       }
     ]
   },

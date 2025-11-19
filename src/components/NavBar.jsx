@@ -1,0 +1,64 @@
+import { NavLink } from "react-router";
+import GlobalThemeToggle from "@/components/GlobalThemeToggle";
+import { Users, Target, UserCog } from "lucide-react";
+import { Routes } from "../routes/routes";
+import { useTheme } from "@/components/ThemeProvider";
+
+export default function Navbar() {
+  const { theme } = useTheme();
+
+  const menuItems = [
+    { name: "Desafios", path: Routes.Challenges, icon: <Target className="h-4 w-4" /> },
+    { name: "Comunidade", path: Routes.Comunity, icon: <Users className="h-4 w-4" /> },
+    { name: "Perfil", path: Routes.Profile, icon: <UserCog className="h-4 w-4" /> },
+  ];
+
+  return (
+    <header 
+      className="w-full border-b" 
+      style={{ 
+        background: "var(--bg-section)",
+        borderColor: "var(--border)"
+      }}
+    >
+      <div className="max-w-7xl mx-auto h-16 px-4 flex items-center justify-between">
+
+        <div className="flex items-center gap-2">
+          <div className="h-8 w-8 rounded-xl bg-linear-to-r from-blue-500 to-green-400" />
+          <span className="font-semibold text-lg" style={{ color: "var(--text)" }}>
+            CarrerTrials
+          </span>
+        </div>
+
+        <nav className="hidden md:flex items-center gap-2 text-sm">
+          {menuItems.map((item) => (
+            <NavLink
+              key={item.name}
+              to={item.path}
+              className={({ isActive }) => {
+                const baseClasses = `
+                  flex items-center gap-2 px-4 py-2 rounded-lg transition
+                  text-(--text)
+                `;
+
+                if (!isActive) return baseClasses;
+
+                const activeClasses =
+                  theme === "light"
+                    ? "bg-(--hero-from) text-(--text-inverted)"
+                    : "bg-(--primary) text-(--text-inverted)";
+
+                return baseClasses + " " + activeClasses;
+              }}
+            >
+              {item.icon}
+              {item.name}
+            </NavLink>
+          ))}
+        </nav>
+
+        <GlobalThemeToggle />
+      </div>
+    </header>
+  );
+}
