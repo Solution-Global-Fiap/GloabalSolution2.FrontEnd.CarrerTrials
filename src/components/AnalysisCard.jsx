@@ -2,10 +2,8 @@ import { Sparkles } from "lucide-react"
 import { Card } from "./ui/card"
 import { Progress } from "./ui/progress"
 
-// simple utility to merge conditional classes
 const cx = (...classes) => classes.filter(Boolean).join(" ")
 
-// animated bouncing dots
 function Dots() {
     return (
         <div className="flex gap-1">
@@ -20,7 +18,6 @@ function Dots() {
     )
 }
 
-// individual step item
 function StepItem({ step, index, current }) {
     const state =
         index < current ? "done" : index === current ? "active" : "todo"
