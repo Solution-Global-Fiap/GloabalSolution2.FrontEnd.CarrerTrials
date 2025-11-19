@@ -98,7 +98,7 @@ export default function ProfilePage() {
                 </div>
 
                 <Progress
-                  value={83}
+                  value={levelProgress}
                   className="
                         h-3 
                         bg-(--border)
