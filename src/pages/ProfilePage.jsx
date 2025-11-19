@@ -22,7 +22,7 @@ export default function ProfilePage() {
   const levelProgress = ((userXP % 500) / 500) * 100;
 
   return (
-    <>
+    <div className="space-y-8">
       <Card
         className="p-8 rounded-2xl shadow-md"
         style={{
@@ -244,6 +244,6 @@ export default function ProfilePage() {
           </div>
         </Card>
       </div>
-    </>
+    </div>
   );
 }

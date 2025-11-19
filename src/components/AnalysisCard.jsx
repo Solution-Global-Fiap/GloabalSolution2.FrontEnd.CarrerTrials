@@ -63,7 +63,7 @@ function StepItem({ step, index, current }) {
 
 export default function AnalysisCard({ progress, steps, currentStep, careerGoal }) {
     return (
-        <Card className="p-8 md:p-12 space-y-8">
+        <Card className="p-8 md:p-12">
             {/* Header */}
             <div className="text-center space-y-4">
                 <div className="inline-flex items-center justify-center size-20 rounded-2xl bg-primary/10 mb-2 relative">

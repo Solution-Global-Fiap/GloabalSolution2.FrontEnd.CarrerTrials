@@ -78,7 +78,7 @@ export default function ChallengesPage() {
 
   if (currentStep === STEPS.ANALYSIS) {
     return (
-      <div className="h-full w-full flex items-center justify-center p-4">
+      <div className="flex items-center justify-center">
         <div
           className="w-full max-w-3xl"
           style={{
