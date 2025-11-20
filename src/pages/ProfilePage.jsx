@@ -77,7 +77,7 @@ export default function ProfilePage() {
               <Badge
                 style={{
                   background: "var(--primary)",
-                  color: "var(--on-primary)",
+                  color: "var(--text-inverted)",
                 }}
               >
                 {user.cargo}
@@ -271,7 +271,7 @@ export default function ProfilePage() {
                     key={skill}
                     style={{
                       background: "var(--primary)",
-                      color: "var(--on-primary)",
+                      color: "var(--text-inverted)",
                     }}
                   >
                     {skill}
@@ -406,7 +406,7 @@ export default function ProfilePage() {
                 key={c}
                 style={{
                   background: "var(--primary)",
-                  color: "var(--on-primary)",
+                  color: "var(--text-inverted)",
                 }}
               >
                 {c}
