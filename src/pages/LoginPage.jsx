@@ -24,7 +24,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (getAuthenticated()) navigateHome();
-  }, []);
+  });
 
 
   const handleSubmit = async (e) => {
