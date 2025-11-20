@@ -28,7 +28,13 @@ const mockConversation = [
 ];
 
 export default function ChallengesPage() {
-  const [currentStep, setCurrentStep] = useState(STEPS.ANALYSIS);
+  const [currentStep, setCurrentStep] = useState(() => {
+    const stored = localStorage.getItem("chatCompleted");
+    const chatCompleted = stored === "true";
+    return chatCompleted 
+      ? STEPS.CHALLENGES
+      : STEPS.CHAT
+  });
   const [careerData, setCareerData] = useState(null);
   const [chatLocked, setChatLocked] = useState(false);
   const [mockIndex, setMockIndex] = useState(1);
@@ -36,6 +42,7 @@ export default function ChallengesPage() {
   const handleChatComplete = async (careerGoal) => {
     setCareerData({ careerGoal });
     setCurrentStep(STEPS.ANALYSIS);
+    localStorage.setItem("chatCompleted", true);
   };
 
   const handleMessage = async (message) => {
