@@ -2,6 +2,7 @@ import { Sparkles } from "lucide-react"
 import { Card } from "./ui/card"
 import { Progress } from "./ui/progress"
 import { useEffect, useState } from "react"
+import { useTheme } from "./ThemeProvider"
 
 const cx = (...classes) => classes.filter(Boolean).join(" ")
 
@@ -62,6 +63,7 @@ function StepItem({ step, index, current }) {
 }
 
 export default function AnalysisCard({ steps, onComplete }) {
+    const { theme } = useTheme();
     const [progress, setProgress] = useState(0);
     const [currentStep, setCurrentStep] = useState(0);
 
@@ -122,8 +124,12 @@ export default function AnalysisCard({ steps, onComplete }) {
         <Card className="p-8 md:p-12">
             {/* Header */}
             <div className="text-center space-y-4">
-                <div className="inline-flex items-center justify-center size-20 rounded-2xl bg-primary/10 mb-2 relative">
-                    <Sparkles className="size-10 text-primary animate-pulse" />
+                <div className="inline-flex items-center justify-center size-30 rounded-2xl bg-primary/10 mb-2 relative">
+                    {theme === "light" ? (
+                        <img src="/Logo-Light.png" className="h-20 w-20" />
+                    ) : (
+                        <img src="/Logo-Dark.png" className="h-20 w-20" />
+                    )}
                     <div className="absolute inset-0 rounded-2xl bg-primary/20 animate-ping" />
                 </div>
 

@@ -3,10 +3,10 @@ import { Users, Target, UserCog } from "lucide-react";
 import { Routes } from "../routes/routes";
 import ModeToggle from "./ModeToggle";
 import { getUser } from "@/hooks/useAuth";
+import { useTheme } from "./ThemeProvider";
 
 export default function Navbar() {
-
-
+  const { theme } = useTheme();
 
   const menuItems = [
     { name: "Desafios", path: Routes.Challenges, icon: <Target className="h-4 w-4" /> },
@@ -25,9 +25,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto h-16 px-4 flex items-center justify-between">
 
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-xl bg-linear-to-r from-blue-500 to-green-400" />
+          {theme === "light" ? (
+            <img src="/Logo-Light.png" className="h-10 w-10" />
+          ) : (
+            <img src="/Logo-Dark.png" className="h-10 w-10" />
+          )}
           <span className="font-semibold text-lg" style={{ color: "var(--text)" }}>
-            CarrerTrials
+            CareerTrials
           </span>
         </div>
 
