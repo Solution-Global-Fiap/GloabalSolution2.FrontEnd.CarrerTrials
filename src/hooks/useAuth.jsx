@@ -26,7 +26,7 @@ export function logoutUser() {
 
 function setAuthenticated(isAuthenticated, user) {
   if (isAuthenticated) {
-    localStorage.setItem("user", JSON.stringify(user));
+    setUser(user)
   }
   localStorage.setItem("isAuthenticated", JSON.stringify(isAuthenticated));
 }
@@ -37,6 +37,10 @@ export function getAuthenticated() {
 
 export function getUser() {
   return JSON.parse(localStorage.getItem("user"));
+}
+
+export function setUser(user){
+  localStorage.setItem("user", JSON.stringify(user));
 }
 
 export function clearLocalStorage() {

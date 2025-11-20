@@ -11,6 +11,9 @@ const getUsers = [
     "resumo": "Profissional focado em Dados.",
     "localizacao": "Fortaleza/CE",
     "area": "Dados",
+    "xp": 0,
+    "level": 0,
+    "completedChallenges": [], 
     "habilidadesTecnicas": [
       "Pandas",
       "Machine Learning",
