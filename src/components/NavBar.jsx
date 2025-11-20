@@ -1,12 +1,9 @@
 import { NavLink } from "react-router";
-import GlobalThemeToggle from "@/components/GlobalThemeToggle";
 import { Users, Target, UserCog } from "lucide-react";
 import { Routes } from "../routes/routes";
-import { useTheme } from "@/components/ThemeProvider";
+import ModeToggle from "./ModeToggle";
 
 export default function Navbar() {
-  const { theme } = useTheme();
-
   const menuItems = [
     { name: "Desafios", path: Routes.Challenges, icon: <Target className="h-4 w-4" /> },
     { name: "Comunidade", path: Routes.Comunity, icon: <Users className="h-4 w-4" /> },
@@ -15,7 +12,7 @@ export default function Navbar() {
 
   return (
     <header 
-      className="w-full border-b" 
+      className="sticky top-0 z-50 w-full border-b backdrop-blur-sm" 
       style={{ 
         background: "var(--bg-section)",
         borderColor: "var(--border)"
@@ -43,12 +40,7 @@ export default function Navbar() {
 
                 if (!isActive) return baseClasses;
 
-                const activeClasses =
-                  theme === "light"
-                    ? "bg-(--hero-from) text-(--text-inverted)"
-                    : "bg-(--primary) text-(--text-inverted)";
-
-                return baseClasses + " " + activeClasses;
+                return baseClasses + " bg-primary text-(--text-inverted)";
               }}
             >
               {item.icon}
@@ -57,7 +49,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <GlobalThemeToggle />
+        <ModeToggle />
       </div>
     </header>
   );

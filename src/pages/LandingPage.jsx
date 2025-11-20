@@ -3,7 +3,7 @@ import { Code2, Users, Brain } from "lucide-react";
 import { useNavigate } from "react-router";
 import { Routes } from "../routes/routes";
 import FeatureCard from "../components/FeatureCard";
-import GlobalThemeToggle from "../components/GlobalThemeToggle";
+import GlobalThemeToggle from "@/components/GlobalThemeToggle";
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -14,12 +14,12 @@ export default function LandingPage() {
       <div className="w-full min-h-screen bg-(--bg) text-(--text)">
         <section
           className="min-h-[90vh] flex items-center 
-        bg-linear-to-r 
-        from-(--hero-from)
-        via-(--hero-middle)
-        to-(--hero-to)
-        text-(--text-inverted)
-        py-20"
+            bg-linear-to-r 
+            from-(--hero-from)
+            via-(--hero-middle)
+            to-(--hero-to)
+            text-(--text-inverted)
+            py-20"
         >
           <div className="max-w-6xl mx-auto text-center px-6">
             <span className="bg-white/10 text-blue-200 border border-white/20 px-4 py-1 rounded-full text-sm backdrop-blur-sm">
@@ -40,7 +40,7 @@ export default function LandingPage() {
             <div className="mt-10 flex items-center justify-center gap-4">
               <Button
                 size="lg"
-                className="bg-(--primary) hover:bg-(--primary-hover)"
+                className="bg-(--bg) hover:bg-(--primary-hover) text-(--text-inverted)"
                 onClick={() => navigate(Routes.Login)}
               >
                 Começar agora
@@ -48,8 +48,7 @@ export default function LandingPage() {
 
               <Button
                 size="lg"
-                variant="outline"
-                className="border-blue-300 text-blue-100 hover:bg-white/10"
+                className="bg-(--bg) hover:bg-(--primary-hover) text-(--text-inverted)"
               >
                 Saiba mais
               </Button>
@@ -116,7 +115,7 @@ export default function LandingPage() {
                 variant="secondary"
                 size="lg"
                 onClick={() => navigate(Routes.Register)}
-                className="text-lg hover:scale-105 transition-transform text-white"
+                className="text-lg hover:scale-105 transition-transform text-(--text-inverted)"
               >
                 Começar Agora
               </Button>

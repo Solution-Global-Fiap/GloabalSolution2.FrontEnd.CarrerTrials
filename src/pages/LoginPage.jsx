@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { loginUser, getAuthenticated } from "../hooks/useAuth";
 import toast from "react-hot-toast";
 import { Routes } from "../routes/routes";
-import GlobalThemeToggle from "../components/GlobalThemeToggle";
+import ModeToggle from "@/components/ModeToggle";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -42,9 +42,9 @@ export default function LoginPage() {
 
   return (
     <div>
-      <GlobalThemeToggle />
+      <ModeToggle />
       <div className="min-h-screen flex items-center justify-center bg-(--bg) text-(--text) p-4">
-        <Card className="w-full max-w-md bg-(--bg-card) border border-(--border) shadow-[0_0_20px_var(--shadow)]">
+        <Card className="w-full max-w-md bg-(--bg-card) border border-border shadow-[0_0_20px_var(--shadow)]">
           <CardHeader>
             <CardTitle className="text-3xl text-center">Login</CardTitle>
             <CardDescription className="text-center text-(--text-secondary)">
@@ -62,7 +62,7 @@ export default function LoginPage() {
                   placeholder="seuemail@email.com"
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="bg-(--bg-section) border-(--border) text-(--text)"
+                  className="bg-(--bg-section) border-border text-(--text)"
                 />
               </div>
 
@@ -74,13 +74,13 @@ export default function LoginPage() {
                   placeholder="••••••••"
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="bg-(--bg-section) border-(--border) text-(--text)"
+                  className="bg-(--bg-section) border-border text-(--text)"
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full bg-(--primary) hover:bg-(--primary-hover) text-white"
+                className="w-full bg-primary hover:bg-(--primary-hover) text-white"
               >
                 Entrar
               </Button>

@@ -6,7 +6,7 @@ export default function FeatureCard({ icon, color, title, description }) {
   };
 
   return (
-    <div className="bg-(--bg-card) shadow-lg rounded-2xl p-10 border border-(--border) transition-all">
+    <div className="bg-(--bg-card) shadow-lg rounded-2xl p-10 border border-border transition-all">
       <div className={`w-16 h-16 mx-auto rounded-xl flex items-center justify-center ${colors[color]}`}>
         {icon}
       </div>

@@ -9,6 +9,9 @@ import ChallengesPage from "../pages/ChallengesPage.jsx";
 import ComunityPage from "../pages/ComunityPage.jsx";
 import ProfilePage from "../pages/ProfilePage.jsx";
 
+const relativeTo = (childPath, parentPath) => {
+  return childPath.replace(parentPath + "/", "");
+}
 
 const router = createBrowserRouter([
   {
@@ -24,9 +27,9 @@ const router = createBrowserRouter([
         children: [
           {
             path: Routes.Challenges,
-            Component: ChallengesPage
+            Component: ChallengesPage,
           },
-            {
+          {
             path: Routes.Comunity,
             Component: ComunityPage
           },
@@ -46,7 +49,7 @@ const router = createBrowserRouter([
         element: <Navigate to={Routes.Login} replace />,
       },
       {
-        path: Routes.Login.replace(Routes.Auth + "/", ""),
+        path: relativeTo(Routes.Login, Routes.Auth),
         Component: LoginPage,
       }
     ],

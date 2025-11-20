@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { Routes } from "../routes/routes";
-import GlobalThemeToggle from "../components/GlobalThemeToggle";
+import GlobalThemeToggle from "@/components/GlobalThemeToggle";
 
 export default function NotFoundPage() {
   return (
@@ -15,7 +15,7 @@ export default function NotFoundPage() {
           </p>
           <Link
             to={Routes.Root}
-            className="text-white bg-(--primary) px-4 py-2 rounded hover:bg-(--primary-hover) transition"
+            className="text-white bg-primary px-4 py-2 rounded hover:bg-(--primary-hover) transition"
           >
             Voltar para Home
           </Link>
