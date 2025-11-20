@@ -8,7 +8,7 @@ export default function MessageList({ messages, isTyping, endRef }) {
                 <MessageBubble key={msg.id} message={msg} index={i} />
             ))}
 
-            <TypingIndicator visible={isTyping} />
+            <TypingIndicator isTyping={isTyping} />
 
             <div ref={endRef} />
         </div>

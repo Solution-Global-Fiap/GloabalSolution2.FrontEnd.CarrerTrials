@@ -7,8 +7,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getUser } from "../hooks/useAuth";
 import {
   Trophy,
-  Target,
-  Calendar,
   Clock,
   BarChart3,
   Mail,
@@ -38,8 +36,6 @@ export default function ProfilePage() {
     }
     return selectedUser || null;
   });
-
-
 
   if (!user) return <p className="text-center mt-20">Carregando perfil...</p>;
 

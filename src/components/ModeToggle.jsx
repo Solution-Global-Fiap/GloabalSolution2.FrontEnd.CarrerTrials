@@ -10,11 +10,11 @@ export default function ModeToggle() {
   }
 
   return (
-    <Button 
-      variant="outline" 
+    <Button
       size="icon"
       onClick={toggle}
       className="rounded-full focus-visible:ring-0 focus:ring-0 focus:outline-none"
+      style={{ background: "var(--primary)", color: "white" }}
     >
       {theme === "light" ? (
         <Moon className="h-5 w-5 text-white"/>

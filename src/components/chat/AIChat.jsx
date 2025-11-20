@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import MessageList from "./MessageList";
 import ChatInput from "./ChatInput";
 
-const AIChat = ({ initialMessage, onSendMessage }) => {
+const AIChat = ({ disabled, initialMessage, onSendMessage }) => {
     const [messages, setMessages] = useState([
         {
             id: "1",
@@ -40,7 +40,7 @@ const AIChat = ({ initialMessage, onSendMessage }) => {
 
             const aiMessage = {
                 id: crypto.randomUUID(),
-                content: response || "Entendi! Deixe-me analisar isso para você.",
+                content: response?.reply || "Entendi! Deixe-me analisar isso para você.",
                 sender: "ai",
                 timestamp: new Date(),
             };
@@ -56,9 +56,9 @@ const AIChat = ({ initialMessage, onSendMessage }) => {
     };
 
     return (
-        <div className="flex flex-col h-full w-full bg-background rounded-xl overflow-hidden">
+        <div className="flex flex-col h-full w-full bg-background rounded-xl overflow-hidden border">
             <MessageList endRef={messagesEndRef} isTyping={isTyping} messages={messages}/>
-            <ChatInput disabled={isTyping} onSend={handleSend} />
+            <ChatInput disabled={isTyping || disabled} onSend={handleSend} />
         </div>
     );
 };

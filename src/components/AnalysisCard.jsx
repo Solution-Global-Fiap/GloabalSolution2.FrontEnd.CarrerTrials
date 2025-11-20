@@ -1,6 +1,8 @@
 import { Sparkles } from "lucide-react"
 import { Card } from "./ui/card"
 import { Progress } from "./ui/progress"
+import { useEffect, useState } from "react"
+import { useTheme } from "./ThemeProvider"
 
 const cx = (...classes) => classes.filter(Boolean).join(" ")
 
@@ -19,8 +21,7 @@ function Dots() {
 }
 
 function StepItem({ step, index, current }) {
-    const state =
-        index < current ? "done" : index === current ? "active" : "todo"
+    const state = index < current ? "done" : index === current ? "active" : "todo"
 
     const wrapperClass = cx(
         "flex items-start gap-4 p-4 rounded-xl border transition-all",
@@ -30,9 +31,9 @@ function StepItem({ step, index, current }) {
     )
 
     const bubbleClass = cx(
-        "size-8 rounded-full flex items-center justify-center",
-        state === "done" && "bg-primary/20 text-primary",
-        state === "active" && "bg-primary text-primary-foreground animate-pulse",
+        "size-8 rounded-full flex items-center justify-center text-(--text-inverted)",
+        state === "done" && "bg-primary/20",
+        state === "active" && "bg-primary animate-pulse",
         state === "todo" && "bg-muted text-muted-foreground"
     )
 
@@ -53,7 +54,7 @@ function StepItem({ step, index, current }) {
                 {state === "active" && (
                     <div className="flex items-center gap-2 mt-2">
                         <Dots />
-                        <span className="text-xs text-muted-foreground">Processing...</span>
+                        <span className="text-xs text-muted-foreground">Processando...</span>
                     </div>
                 )}
             </div>
@@ -61,21 +62,80 @@ function StepItem({ step, index, current }) {
     )
 }
 
-export default function AnalysisCard({ progress, steps, currentStep, careerGoal }) {
+export default function AnalysisCard({ steps, onComplete }) {
+    const { theme } = useTheme();
+    const [progress, setProgress] = useState(0);
+    const [currentStep, setCurrentStep] = useState(0);
+
+    const animateTo = (start, end, duration) => {
+        return new Promise((resolve) => {
+            const startTime = performance.now();
+
+            const tick = (now) => {
+                const elapsed = now - startTime;
+                const progressRatio = Math.min(elapsed / duration, 1);
+
+                const value = Math.round(start + (end - start) * progressRatio);
+                setProgress(value);
+
+                if (progressRatio < 1) {
+                    requestAnimationFrame(tick);
+                } else {
+                    resolve();
+                }
+            };
+
+            requestAnimationFrame(tick);
+        });
+    };
+
+    useEffect(() => {
+        let cancelled = false;
+
+        const run = async () => {
+            let value = 0;
+            const increment = 100 / steps.length;
+
+            for (let i = 0; i < steps.length; i++) {
+                if (cancelled) return;
+
+                setCurrentStep(i);
+
+                const { duration } = steps[i];
+                const target = Math.round((i + 1) * increment);
+
+                await animateTo(value, target, duration);
+
+                value = target;
+
+                await new Promise((r) => setTimeout(r, 300));
+            }
+
+            if (!cancelled && onComplete) onComplete();
+        };
+
+        run();
+        return () => {
+            cancelled = true;
+        };
+    }, [steps, onComplete]);
+
     return (
         <Card className="p-8 md:p-12">
             {/* Header */}
             <div className="text-center space-y-4">
-                <div className="inline-flex items-center justify-center size-20 rounded-2xl bg-primary/10 mb-2 relative">
-                    <Sparkles className="size-10 text-primary animate-pulse" />
+                <div className="inline-flex items-center justify-center size-30 rounded-2xl bg-primary/10 mb-2 relative">
+                    {theme === "light" ? (
+                        <img src="/Logo-Light.png" className="h-20 w-20" />
+                    ) : (
+                        <img src="/Logo-Dark.png" className="h-20 w-20" />
+                    )}
                     <div className="absolute inset-0 rounded-2xl bg-primary/20 animate-ping" />
                 </div>
 
                 <h1 className="text-3xl md:text-4xl font-bold">
-                    Analyzing your career path
+                    Analisando sua trajetória profissional
                 </h1>
-
-                <p className="text-lg text-muted-foreground">{careerGoal}</p>
             </div>
 
             {/* Progress */}
@@ -83,11 +143,11 @@ export default function AnalysisCard({ progress, steps, currentStep, careerGoal 
                 <Progress value={progress} className="h-3" />
                 <div className="flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">
-                        {Math.round(progress)}% complete
+                        {Math.round(progress)}% completo
                     </span>
 
                     <span className="text-muted-foreground">
-                        Step {currentStep + 1} of {steps.length}
+                        Passo {currentStep + 1} de {steps.length}
                     </span>
                 </div>
             </div>
@@ -102,10 +162,10 @@ export default function AnalysisCard({ progress, steps, currentStep, careerGoal 
             {/* Fun fact */}
             <div className="bg-accent rounded-xl p-6 space-y-2">
                 <p className="text-sm font-semibold text-accent-foreground">
-                    Did you know?
+                    Você sabia?
                 </p>
                 <p className="text-sm text-muted-foreground">
-                    Our AI analyzes thousands of career paths to create your personalized roadmap.
+                    Nossa IA analisa milhares de trajetórias de carreira para criar um roteiro personalizado para você.
                 </p>
             </div>
         </Card>
