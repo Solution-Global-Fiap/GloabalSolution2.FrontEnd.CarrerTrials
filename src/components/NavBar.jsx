@@ -2,12 +2,16 @@ import { NavLink } from "react-router";
 import { Users, Target, UserCog } from "lucide-react";
 import { Routes } from "../routes/routes";
 import ModeToggle from "./ModeToggle";
+import { getUser } from "@/hooks/useAuth";
 
 export default function Navbar() {
+
+
+
   const menuItems = [
     { name: "Desafios", path: Routes.Challenges, icon: <Target className="h-4 w-4" /> },
     { name: "Comunidade", path: Routes.Comunity, icon: <Users className="h-4 w-4" /> },
-    { name: "Perfil", path: Routes.Profile, icon: <UserCog className="h-4 w-4" /> },
+    { name: "Perfil", path: Routes.Profile.replace(":id", getUser().id) , icon: <UserCog className="h-4 w-4" /> },
   ];
 
   return (

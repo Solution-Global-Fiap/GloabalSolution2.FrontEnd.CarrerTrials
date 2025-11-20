@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 import {
   Trophy,
   Target,
@@ -12,89 +14,81 @@ import {
   Mail,
   Linkedin,
   Github,
+  MapPin,
+  Briefcase,
+  GraduationCap,
+  FileCode,
+  Award,
+  Languages,
 } from "lucide-react";
 
+import users from "../data/users";
+
 export default function ProfilePage() {
-  const [careerGoal, setCareerGoal] = useState(() => sessionStorage.getItem("careerGoal") || "Full Stack Developer");
+  const { id } = useParams();
+  const [user, setUser] = useState(null);
+
   const [userXP] = useState(450);
   const [userLevel] = useState(3);
+
+  useEffect(() => {
+    const selectedUser = users.find((u) => u.id === Number(id));
+
+    if (selectedUser) {
+      setUser(selectedUser);
+    } else {
+      console.warn("Usuário não encontrado para o ID:", id);
+    }
+  }, [id]);
+
+  if (!user) return <p className="text-center mt-20">Carregando perfil...</p>;
 
   const levelProgress = ((userXP % 500) / 500) * 100;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 my-20">
+
       <Card
         className="p-8 rounded-2xl shadow-md"
-        style={{
-          background: "var(--bg-section)",
-          borderColor: "var(--border)",
-        }}
+        style={{ background: "var(--bg-section)", borderColor: "var(--border)" }}
       >
-        <div className="flex flex-col md:flex-row gap-6 items-start">
-          <Avatar className="h-24 w-24">
+        <div className="flex flex-col md:flex-row gap-6">
+          <Avatar className="h-28 w-28">
+            <AvatarImage src={user.foto} />
             <AvatarFallback
-              className="text-xl"
-              style={{
-                background: "var(--primary)",
-                color: "var(--on-primary)",
-              }}
+              style={{ background: "var(--primary)", color: "var(--on-primary)" }}
             >
-              JD
+              {user.nome.slice(0, 2).toUpperCase()}
             </AvatarFallback>
           </Avatar>
 
           <div className="flex-1 space-y-4">
-            <h1 className="text-3xl font-bold">{`John Doe`}</h1>
-            <p style={{ color: "var(--subtle-text)" }}>
-              Aspirante a {careerGoal}
-            </p>
+            <h1 className="text-3xl font-bold">{user.nome}</h1>
+            <p style={{ color: "var(--subtle-text)" }}>{user.resumo}</p>
 
             <div className="flex flex-wrap gap-2">
-              <Badge
-                className="gap-1"
-                style={{
-                  background: "var(--primary)",
-                  color: "var(--on-primary)",
-                }}
-              >
-                <Trophy className="h-3 w-3" />
-                Level {userLevel}
+              <Badge style={{ background: "var(--primary)", color: "var(--on-primary)" }}>
+                {user.cargo}
               </Badge>
 
-              <Badge
-                variant="outline"
-                className="gap-1"
-                style={{ borderColor: "var(--border)" }}
-              >
-                <Target className="h-3 w-3" />
-                {userXP} XP
+              <Badge variant="outline" style={{ borderColor: "var(--border)" }}>
+                <MapPin className="h-3 w-3 mr-1" /> {user.localizacao}
               </Badge>
 
-              <Badge
-                variant="outline"
-                className="gap-1"
-                style={{ borderColor: "var(--border)" }}
-              >
-                <Calendar className="h-3 w-3" />
-                Joined 30 days ago
+              <Badge variant="outline" style={{ borderColor: "var(--border)" }}>
+                Área: {user.area}
               </Badge>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 pt-3">
               <div className="flex justify-between text-sm">
                 <span style={{ color: "var(--subtle-text)" }}>
-                  Progress to Level {userLevel + 1}
+                  Progresso para Level {userLevel + 1}
                 </span>
                 <span>{Math.round(levelProgress)}%</span>
               </div>
 
-              <Progress
-                value={levelProgress}
-                className="
-                        h-3 
-                        bg-border
-                    "
-              />
+              <Progress value={levelProgress} className="h-3" />
             </div>
           </div>
         </div>
@@ -103,10 +97,7 @@ export default function ProfilePage() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <Card
           className="p-6 rounded-xl shadow-sm"
-          style={{
-            background: "var(--bg-section)",
-            borderColor: "var(--border)",
-          }}
+          style={{ background: "var(--bg-section)", borderColor: "var(--border)" }}
         >
           <div className="flex items-center gap-3 mb-3">
             <Clock className="h-5 w-5" style={{ color: "var(--primary)" }} />
@@ -118,16 +109,10 @@ export default function ProfilePage() {
 
         <Card
           className="p-6 rounded-xl shadow-sm"
-          style={{
-            background: "var(--bg-section)",
-            borderColor: "var(--border)",
-          }}
+          style={{ background: "var(--bg-section)", borderColor: "var(--border)" }}
         >
           <div className="flex items-center gap-3 mb-3">
-            <BarChart3
-              className="h-5 w-5"
-              style={{ color: "var(--primary)" }}
-            />
+            <BarChart3 className="h-5 w-5" style={{ color: "var(--primary)" }} />
             <h3 className="font-semibold">Streak</h3>
           </div>
           <p className="text-3xl font-bold">7 days</p>
@@ -136,10 +121,7 @@ export default function ProfilePage() {
 
         <Card
           className="p-6 rounded-xl shadow-sm"
-          style={{
-            background: "var(--bg-section)",
-            borderColor: "var(--border)",
-          }}
+          style={{ background: "var(--bg-section)", borderColor: "var(--border)" }}
         >
           <div className="flex items-center gap-3 mb-3">
             <Trophy className="h-5 w-5" style={{ color: "var(--primary)" }} />
@@ -151,53 +133,38 @@ export default function ProfilePage() {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6">
+        
         <Card
           className="p-6 rounded-xl shadow-sm"
-          style={{
-            background: "var(--bg-section)",
-            borderColor: "var(--border)",
-          }}
+          style={{ background: "var(--bg-section)", borderColor: "var(--border)" }}
         >
-          <h2 className="text-xl font-semibold mb-4">
-            Informações de Contato
-          </h2>
+          <h2 className="text-xl font-semibold mb-4">Informações de Contato</h2>
 
           <div className="space-y-4">
-            <div
-              className="flex items-center gap-4 p-3 rounded-lg"
-              style={{ border: "1px solid var(--border)" }}
-            >
+            <div className="flex items-center gap-4 p-3 rounded-lg" style={{ border: "1px solid var(--border)" }}>
               <Mail className="h-6 w-6" />
               <div>
                 <p className="font-medium">Email</p>
-                <p style={{ color: "var(--subtle-text)" }}>
-                  joao.silva@email.com
-                </p>
+                <p style={{ color: "var(--subtle-text)" }}>{user.email}</p>
               </div>
             </div>
 
-            <div
-              className="flex items-center gap-4 p-3 rounded-lg"
-              style={{ border: "1px solid var(--border)" }}
-            >
+            <div className="flex items-center gap-4 p-3 rounded-lg hover:underline" style={{ border: "1px solid var(--border)" }}>
               <Linkedin className="h-6 w-6" />
               <div>
                 <p className="font-medium">LinkedIn</p>
                 <p style={{ color: "var(--subtle-text)" }}>
-                  linkedin.com/in/joaosilva
+                  <a href={user.linkedin} target="_blank"> {user.linkedin || "Não informado"}</a>
                 </p>
               </div>
             </div>
 
-            <div
-              className="flex items-center gap-4 p-3 rounded-lg"
-              style={{ border: "1px solid var(--border)" }}
-            >
+            <div className="flex items-center gap-4 p-3 rounded-lg hover:underline" style={{ border: "1px solid var(--border)" }}>
               <Github className="h-6 w-6" />
               <div>
                 <p className="font-medium">GitHub</p>
                 <p style={{ color: "var(--subtle-text)" }}>
-                  github.com/joaosilva
+                   <a href={user.github} target="_blank"> {user.github || "Não informado"}</a>
                 </p>
               </div>
             </div>
@@ -206,43 +173,148 @@ export default function ProfilePage() {
 
         <Card
           className="p-6 rounded-xl shadow-sm"
-          style={{
-            background: "var(--bg-section)",
-            borderColor: "var(--border)",
-          }}
+          style={{ background: "var(--bg-section)", borderColor: "var(--border)" }}
         >
           <div className="flex items-center gap-2 mb-4">
-            <BarChart3
-              className="h-5 w-5"
-              style={{ color: "var(--primary)" }}
-            />
+            <BarChart3 className="h-5 w-5" style={{ color: "var(--primary)" }} />
             <h2 className="text-xl font-semibold">Learning Activity</h2>
           </div>
 
           <div className="space-y-6">
-            {[
-              ["Mon", "2h 30m", 80],
-              ["Tue", "1h 45m", 60],
-              ["Wed", "3h 15m", 100],
-              ["Thu", "2h 00m", 70],
-              ["Fri", "1h 30m", 50],
-            ].map(([day, time, value]) => (
+            {[["Mon", "2h 30m", 80], ["Tue", "1h 45m", 60], ["Wed", "3h 15m", 100], ["Thu", "2h 00m", 70], ["Fri", "1h 30m", 50]].map(([day, time, value]) => (
               <div key={day}>
                 <div className="flex justify-between text-sm mb-1">
                   <span style={{ color: "var(--subtle-text)" }}>{day}</span>
                   <span>{time}</span>
                 </div>
-                <Progress
-                  value={value}
-                  className="h-2 
-                               *:[[role=progressbar]]:bg-primary
-                               bg-border
-                    "
-                />
+                <Progress value={value} className="h-2 bg-border" />
               </div>
             ))}
           </div>
         </Card>
+
+        <Card
+          className="p-6 rounded-xl shadow-md"
+          style={{ background: "var(--bg-section)", borderColor: "var(--border)" }}
+        >
+          <h2 className="text-xl font-semibold mb-4">Habilidades</h2>
+
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-semibold mb-2 text-lg">Habilidades Técnicas</h3>
+              <div className="flex flex-wrap gap-2">
+                {user.habilidadesTecnicas.map((skill) => (
+                  <Badge key={skill} style={{ background: "var(--primary)", color: "var(--on-primary)" }}>
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-2 text-lg">Soft Skills</h3>
+              <div className="flex flex-wrap gap-2">
+                {user.softSkills.map((skill) => (
+                  <Badge key={skill} variant="outline" style={{ borderColor: "var(--border)" }}>
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Card>
+
+        <Card className="p-6 rounded-xl shadow-md" style={{ background: "var(--bg-section)", borderColor: "var(--border)" }}>
+          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <Briefcase className="h-5 w-5" /> Experiências Profissionais
+          </h2>
+
+          <div className="space-y-6">
+            {user.experiencias.map((exp, i) => (
+              <div key={i} className="p-4 rounded-lg" style={{ border: "1px solid var(--border)" }}>
+                <h3 className="font-semibold">
+                  {exp.cargo} — {exp.empresa}
+                </h3>
+                <p className="text-sm" style={{ color: "var(--subtle-text)" }}>
+                  {exp.inicio} → {exp.fim}
+                </p>
+                <p className="mt-2">{exp.descricao}</p>
+              </div>
+            ))}
+          </div>
+        </Card>
+
+        <Card className="p-6 rounded-xl shadow-md" style={{ background: "var(--bg-section)", borderColor: "var(--border)" }}>
+          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <GraduationCap className="h-5 w-5" /> Formação Acadêmica
+          </h2>
+
+          <div className="space-y-6">
+            {user.formacao.map((f, i) => (
+              <div key={i} className="p-4 rounded-lg" style={{ border: "1px solid var(--border)" }}>
+                <h3 className="font-semibold">{f.curso}</h3>
+                <p style={{ color: "var(--subtle-text)" }}>
+                  {f.instituicao} — {f.ano}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Card>
+        <Card className="p-6 rounded-xl shadow-md" style={{ background: "var(--bg-section)", borderColor: "var(--border)" }}>
+          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <FileCode className="h-5 w-5" /> Projetos
+          </h2>
+
+          <div className="space-y-6">
+            {user.projetos.map((p, i) => (
+              <div key={i} className="p-4 rounded-lg" style={{ border: "1px solid var(--border)" }}>
+                <h3 className="font-semibold">{p.titulo}</h3>
+                <p className="mt-1">{p.descricao}</p>
+
+                {p.link && (
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    className="text-sm underline"
+                    style={{ color: "var(--primary)" }}
+                  >
+                    Ver projeto →
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </Card>
+
+        <Card className="p-6 rounded-xl shadow-md" style={{ background: "var(--bg-section)", borderColor: "var(--border)" }}>
+          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <Award className="h-5 w-5" /> Certificações
+          </h2>
+
+          <div className="flex flex-wrap gap-3">
+            {user.certificacoes.map((c) => (
+              <Badge key={c} style={{ background: "var(--primary)", color: "var(--on-primary)" }}>
+                {c}
+              </Badge>
+            ))}
+          </div>
+        </Card>
+
+        <Card className="p-6 rounded-xl shadow-md" style={{ background: "var(--bg-section)", borderColor: "var(--border)" }}>
+          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <Languages className="h-5 w-5" /> Idiomas
+          </h2>
+
+          <div className="space-y-3">
+            {user.idiomas.map((i, idx) => (
+              <div key={idx}>
+                <p className="font-semibold">{i.idioma}</p>
+                <p style={{ color: "var(--subtle-text)" }}>{i.nivel}</p>
+              </div>
+            ))}
+          </div>
+        </Card>
+
       </div>
     </div>
   );
