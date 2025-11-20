@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,8 +7,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import {
   Trophy,
-  Target,
-  Calendar,
   Clock,
   BarChart3,
   Mail,
@@ -26,20 +24,16 @@ import users from "../data/users";
 
 export default function ProfilePage() {
   const { id } = useParams();
-  const [user, setUser] = useState(null);
+  const [user] = useState(() => {
+    const selectedUser = users.find((u) => u.id === Number(id));
+    if (!selectedUser) {
+      console.warn("Usuário não encontrado para o ID:", id);
+    }
+    return selectedUser || null;
+  });
 
   const [userXP] = useState(450);
   const [userLevel] = useState(3);
-
-  useEffect(() => {
-    const selectedUser = users.find((u) => u.id === Number(id));
-
-    if (selectedUser) {
-      setUser(selectedUser);
-    } else {
-      console.warn("Usuário não encontrado para o ID:", id);
-    }
-  }, [id]);
 
   if (!user) return <p className="text-center mt-20">Carregando perfil...</p>;
 
@@ -47,7 +41,6 @@ export default function ProfilePage() {
 
   return (
     <div className="space-y-8 my-20">
-
       <Card
         className="p-8 rounded-2xl shadow-md"
         style={{ background: "var(--bg-section)", borderColor: "var(--border)" }}
@@ -67,7 +60,7 @@ export default function ProfilePage() {
             <p style={{ color: "var(--subtle-text)" }}>{user.resumo}</p>
 
             <div className="flex flex-wrap gap-2">
-              <Badge style={{ background: "var(--primary)", color: "var(--on-primary)" }}>
+              <Badge style={{ background: "var(--primary)", color: "var(--text-inverted)" }}>
                 {user.cargo}
               </Badge>
 
@@ -204,7 +197,7 @@ export default function ProfilePage() {
               <h3 className="font-semibold mb-2 text-lg">Habilidades Técnicas</h3>
               <div className="flex flex-wrap gap-2">
                 {user.habilidadesTecnicas.map((skill) => (
-                  <Badge key={skill} style={{ background: "var(--primary)", color: "var(--on-primary)" }}>
+                  <Badge key={skill} style={{ background: "var(--primary)", color: "var(--text-inverted)" }}>
                     {skill}
                   </Badge>
                 ))}
@@ -293,7 +286,7 @@ export default function ProfilePage() {
 
           <div className="flex flex-wrap gap-3">
             {user.certificacoes.map((c) => (
-              <Badge key={c} style={{ background: "var(--primary)", color: "var(--on-primary)" }}>
+              <Badge key={c} style={{ background: "var(--primary)", color: "var(--text-inverted)" }}>
                 {c}
               </Badge>
             ))}
