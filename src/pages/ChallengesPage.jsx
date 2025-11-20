@@ -9,52 +9,61 @@ const STEPS = {
 };
 
 const analysisSteps = [
-  { id: 1, label: "Understanding your career goal", duration: 1500 },
-  { id: 2, label: "Identifying required skills", duration: 2000 },
-  { id: 3, label: "Mapping skill dependencies", duration: 2000 },
-  { id: 4, label: "Creating personalized roadmap", duration: 1500 },
-  { id: 5, label: "Generating learning resources", duration: 1000 },
+  { id: 1, label: "Entendendo seu objetivo de carreira", duration: 1500 },
+  { id: 2, label: "dentificando as habilidades necessárias", duration: 2000 },
+  { id: 3, label: "Mapeando as dependências de habilidades", duration: 2000 },
+  { id: 4, label: "Criando um roteiro personalizado", duration: 1500 },
+  { id: 5, label: "Gerando recursos de aprendizagem", duration: 1000 },
+];
+
+let collectedAnswers = [];
+
+const mockConversation = [
+  "Legal, antes de começarmos, qual é o objetivo da sua carreira hoje?",
+  "Entendi. E qual experiência você já tem nessa área?",
+  "Perfeito. Qual dessas áreas você sente mais dificuldade atualmente?",
+  "Ótimo. Em quanto tempo você espera alcançar seu próximo nível profissional?",
+  "Interessante! O que mais te motiva nessa jornada?",
+  "Beleza, acho que já tenho o suficiente. Pronta pra analisar seu perfil!"
 ];
 
 export default function ChallengesPage() {
   const [currentStep, setCurrentStep] = useState(STEPS.CHAT);
   const [careerData, setCareerData] = useState(null);
-  const [analysisProgress, setAnalysisProgress] = useState(0);
-  const [currentAnalysisStep, setCurrentAnalysisStep] = useState(0);
+  const [chatLocked, setChatLocked] = useState(false);
+  const [mockIndex, setMockIndex] = useState(1);
 
   const handleChatComplete = async (careerGoal) => {
     setCareerData({ careerGoal });
     setCurrentStep(STEPS.ANALYSIS);
-    await runAnalysis();
-    setCurrentStep(STEPS.CHALLENGES);
-  };
-
-  const runAnalysis = async () => {
-    let totalDuration = 0;
-    const totalTime = analysisSteps.reduce((sum, step) => sum + step.duration, 0);
-
-    for (let i = 0; i < analysisSteps.length; i++) {
-      setCurrentAnalysisStep(i);
-
-      await new Promise(resolve => setTimeout(resolve, analysisSteps[i].duration));
-
-      totalDuration += analysisSteps[i].duration;
-      setAnalysisProgress((totalDuration / totalTime) * 100);
-    }
   };
 
   const handleMessage = async (message) => {
-    const response = await fetch("/api/chat", {
-      method: "POST",
-      body: JSON.stringify({ message }),
-    });
-    const data = await response.json();
+    if (chatLocked) return;
 
-    if (data.isComplete) {
-      await handleChatComplete(data.careerGoal);
+    await new Promise((r) => setTimeout(r, 600));
+
+    if (mockIndex > 0) {
+      collectedAnswers.push({ question: mockConversation[mockIndex - 1], answer: message });
     }
 
-    return data.reply;
+    const isLast = mockIndex >= mockConversation.length - 1;
+
+    const reply = mockConversation[mockIndex];
+    setMockIndex(Math.min(mockIndex + 1, mockConversation.length - 1));
+
+    if (isLast) {
+      setChatLocked(true);
+      setTimeout(async () => {
+        await handleChatComplete(collectedAnswers[0]?.answer ?? message);
+      }, 2000);
+    }
+
+    return {
+      reply,
+      isComplete: isLast,
+      careerGoal: isLast ? collectedAnswers[0]?.answer ?? message : null
+    };
   };
 
 
@@ -63,7 +72,8 @@ export default function ChallengesPage() {
       <div className="h-[calc(98vh-3rem)] flex items-center justify-center p-4">
         <div className="w-full max-w-4xl h-full">
           <AIChat
-            initialMessage="Olá! Sou sua mentora de carreira. Como posso ajudar?"
+            disabled={chatLocked}
+            initialMessage={mockConversation[0]}
             onSendMessage={handleMessage}
           />
         </div>
@@ -82,10 +92,9 @@ export default function ChallengesPage() {
           }}
         >
           <AnalysisCard
-            careerGoal={careerData?.careerGoal}
-            currentStep={currentAnalysisStep}
-            progress={analysisProgress}
             steps={analysisSteps}
+            careerGoal={careerData?.careerGoal}
+            onComplete={() => setCurrentStep(STEPS.CHALLENGES)}
           />
         </div>
       </div>
