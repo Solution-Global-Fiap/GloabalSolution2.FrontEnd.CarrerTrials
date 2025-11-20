@@ -17,22 +17,15 @@ const analysisSteps = [
 ];
 
 export default function ChallengesPage() {
-  const [currentStep, setCurrentStep] = useState(STEPS.ANALYSIS);
+  const [currentStep, setCurrentStep] = useState(STEPS.CHAT);
   const [careerData, setCareerData] = useState(null);
   const [analysisProgress, setAnalysisProgress] = useState(0);
   const [currentAnalysisStep, setCurrentAnalysisStep] = useState(0);
 
   const handleChatComplete = async (careerGoal) => {
-    // Store the career goal
     setCareerData({ careerGoal });
-
-    // Move to analysis
     setCurrentStep(STEPS.ANALYSIS);
-
-    // Simulate analysis progress
     await runAnalysis();
-
-    // Move to challenges
     setCurrentStep(STEPS.CHALLENGES);
   };
 
@@ -67,11 +60,13 @@ export default function ChallengesPage() {
 
   if (currentStep === STEPS.CHAT) {
     return (
-      <div className="h-full w-full">
-        <AIChat
-          initialMessage="Olá! Sou sua mentora de carreira. Como posso ajudar?"
-          onSendMessage={handleMessage}
-        />
+      <div className="h-[calc(98vh-3rem)] flex items-center justify-center p-4">
+        <div className="w-full max-w-4xl h-full">
+          <AIChat
+            initialMessage="Olá! Sou sua mentora de carreira. Como posso ajudar?"
+            onSendMessage={handleMessage}
+          />
+        </div>
       </div>
     );
   }

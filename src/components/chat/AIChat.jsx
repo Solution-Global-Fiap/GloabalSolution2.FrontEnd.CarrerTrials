@@ -56,7 +56,7 @@ const AIChat = ({ initialMessage, onSendMessage }) => {
     };
 
     return (
-        <div className="flex flex-col h-full w-full bg-background rounded-xl overflow-hidden">
+        <div className="flex flex-col h-full w-full bg-background rounded-xl overflow-hidden border">
             <MessageList endRef={messagesEndRef} isTyping={isTyping} messages={messages}/>
             <ChatInput disabled={isTyping} onSend={handleSend} />
         </div>

@@ -19,8 +19,7 @@ function Dots() {
 }
 
 function StepItem({ step, index, current }) {
-    const state =
-        index < current ? "done" : index === current ? "active" : "todo"
+    const state = index < current ? "done" : index === current ? "active" : "todo"
 
     const wrapperClass = cx(
         "flex items-start gap-4 p-4 rounded-xl border transition-all",
@@ -30,9 +29,9 @@ function StepItem({ step, index, current }) {
     )
 
     const bubbleClass = cx(
-        "size-8 rounded-full flex items-center justify-center",
-        state === "done" && "bg-primary/20 text-primary",
-        state === "active" && "bg-primary text-primary-foreground animate-pulse",
+        "size-8 rounded-full flex items-center justify-center text-(--text-inverted)",
+        state === "done" && "bg-primary/20",
+        state === "active" && "bg-primary animate-pulse",
         state === "todo" && "bg-muted text-muted-foreground"
     )
 

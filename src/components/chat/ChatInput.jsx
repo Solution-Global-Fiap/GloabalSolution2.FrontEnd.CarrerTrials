@@ -46,6 +46,7 @@ export default function ChatInput({ onSend, disabled }) {
                     disabled={disabled || !value.trim()}
                     size="icon"
                     className="bg-primary hover:bg-primary/90"
+                    style={{ background: "var(--primary)", color: "white" }}
                 >
                     <Send className="h-5 w-5" />
                 </Button>
