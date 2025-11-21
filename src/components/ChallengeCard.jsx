@@ -25,8 +25,10 @@ export default function ChallengeCard({ challenge, align = "right", onClick, isC
         className="p-6 rounded-xl shadow-md w-[380px] cursor-pointer hover:scale-[1.02] transition"
         style={{ background: isChecked ? "var(--bg-card-completed)" :  "var(--bg)", borderColor: "var(--border)" }}
       >
-        <div className="flex justify-between">
-          <h3 className="font-semibold">{challenge.title}</h3>
+        <div className="flex justify-between items-baseline">
+          <div>
+            <h3 className="font-semibold">{challenge.title}</h3>
+          </div>
 
           <Badge style={{ background: typeColors[challenge.type], color: "#fff" }}>
             {challenge.type}

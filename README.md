@@ -131,10 +131,10 @@ Os dados são persistidos no localStorage:
 
 ## 🚧 Roadmap
 
-- [ ] Backend API integration
+- [X] Backend API integration
 - [ ] Autenticação real (OAuth, JWT)
 - [ ] Sistema de desafios funcionais
-- [ ] Integração com IA real (OpenAI, Claude API)
+- [X] Integração com IA real (OpenAI, Claude API)
 - [ ] Sistema de notificações
 
 ## 📝 Licença
