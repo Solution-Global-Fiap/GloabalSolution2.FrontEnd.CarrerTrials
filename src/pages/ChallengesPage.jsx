@@ -144,9 +144,6 @@ export default function ChallengesPage() {
         <div className="max-w-4xl mx-auto px-4 py-10">
           <div className="text-center mb-10">
             <h1 className="text-3xl font-bold">Sua jornada de aprendizado</h1>
-            <p style={{ color: "var(--subtle-text)" }}>
-              Eu quero me tornar desenvolvedor full-stack
-            </p>
           </div>
 
           <div
@@ -165,8 +162,8 @@ export default function ChallengesPage() {
               <div className="h-14 w-14 flex items-center justify-center rounded-full bg-primary text-(--text-inverted)">
                 <Rocket className="h-6 w-6" />
               </div>
-              <p className="mt-2 font-semibold">Começe aqui</p>
-              <span className="text-sm" style={{ color: "var(--subtle-text)" }}>
+              <p className="mt-2 font-semibold bg-(--bg-section)">Começe aqui</p>
+              <span className="text-sm bg-(--bg-section)" style={{ color: "var(--subtle-text)" }}>
                 Level 1
               </span>
             </div>
