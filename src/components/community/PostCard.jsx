@@ -1,6 +1,5 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Heart, MessageCircle } from "lucide-react";
 import { Button } from "../ui/button";
 import getUsers from "@/data/users";
@@ -8,6 +7,7 @@ import { useState } from "react";
 import PostCommentsModal from "./PostCommentModal";
 import { useNavigate } from "react-router";
 import { Routes } from "@/routes/routes";
+import CommunityAvatar from "../CommunityAvatar";
 
 function formatTimestamp(timestamp) {
     const date = new Date(timestamp);
@@ -29,29 +29,18 @@ export default function PostCard({ post, comments, isLiked, onToggleLike, onOpen
     const [showComments, setShowComments] = useState(false);
 
     
-    function navigateToProfile(){
-        navigate(Routes.ViewProfile.replace(":id", user.id))
+    function navigateToProfile(userId){
+        navigate(Routes.ViewProfile.replace(":id", userId))
     }
 
     return (
         <>
             <Card onClick={() => setShowComments(true)} className="p-6 space-y-4 cursor-pointer">
-                <div className="flex items-start gap-3" onClick={navigateToProfile}>
-                    <Avatar className="h-12 w-12">
-                        <AvatarImage src={user.foto} alt={user.nome} />
-                        <AvatarFallback className="bg-primary/10 text-primary">
-                            {user.nome.charAt(0)}
-                        </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                        <div className="flex items-center gap-2">
-                            <h3 className="font-semibold">{user.nome}</h3>
-                            <Badge variant="secondary" className="text-xs">
-                                Level {user.level}
-                            </Badge>
-                        </div>
-                        <p className="text-sm text-muted-foreground">{user.cargo}</p>
-                    </div>
+                <div className="flex items-start justify-between gap-3">
+                    <CommunityAvatar
+                        user={user}
+                        navigateTo={navigateToProfile}
+                    />
                     <span className="text-sm text-muted-foreground">{formatTimestamp(post.timestamp)}</span>
                 </div>
 
@@ -61,7 +50,7 @@ export default function PostCard({ post, comments, isLiked, onToggleLike, onOpen
                     <div className="flex gap-2 flex-wrap">
                         {post.tags.map((tag) => (
                             <Badge key={tag} variant="outline" className="text-xs">
-                                #{tag}
+                                {tag}
                             </Badge>
                         ))}
                     </div>
@@ -94,6 +83,7 @@ export default function PostCard({ post, comments, isLiked, onToggleLike, onOpen
                 user={user}
                 open={showComments}
                 onClose={() => setShowComments(false)}
+                navigateTo={navigateToProfile}
             />
         </>
     );

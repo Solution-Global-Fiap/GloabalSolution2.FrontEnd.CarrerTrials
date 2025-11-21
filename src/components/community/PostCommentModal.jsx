@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import getUsers from "@/data/users";
+import CommunityAvatar from "../CommunityAvatar";
 
 function formatTimestamp(timestamp) {
     const date = new Date(timestamp);
@@ -17,26 +17,17 @@ function formatTimestamp(timestamp) {
     return `${days} dias atrás`;
 }
 
-export default function PostCommentsModal({ user, post, comments, open, onClose }) {
+export default function PostCommentsModal({ user, post, comments, open, onClose, navigateTo }) {
     return (
         <Dialog open={open} onOpenChange={onClose}>
             <DialogContent className="max-w-2xl bg-background border border-border p-6 pt-15 rounded-xl overflow-y-auto max-h-[90vh]">
 
                 <DialogHeader>
                     <DialogTitle/>
-                    <div className="flex items-center gap-3">
-                        <Avatar>
-                            <AvatarImage src={user.foto} alt={user.nome} />
-                            <AvatarFallback>{user.nome.charAt(0)}</AvatarFallback>
-                        </Avatar>
-                        <div>
-                            <h3 className="font-semibold">{user.nome}</h3>
-                            <p className="text-sm text-muted-foreground">{user.cargo}</p>
-                        </div>
-                        <Badge variant="secondary" className="ml-auto">
-                            Level {user.level}
-                        </Badge>
-                    </div>
+                    <CommunityAvatar
+                        user={user}
+                        navigateTo={navigateTo}
+                    />
                 </DialogHeader>
 
                 <p className="mt-4 text-base leading-relaxed">{post.content}</p>
@@ -65,10 +56,12 @@ export default function PostCommentsModal({ user, post, comments, open, onClose 
 
                         return (
                             <div key={comment.id} className="flex gap-3">
-                                <Avatar className="h-8 w-8">
-                                    <AvatarImage src={user.foto} alt={user.nome} />
-                                    <AvatarFallback>{user.nome.charAt(0)}</AvatarFallback>
-                                </Avatar>
+                                <CommunityAvatar
+                                    user={user}
+                                    navigateTo={navigateTo}
+                                    hide={true}
+                                    avatarSize={8}
+                                />
 
                                 <div className="bg-secondary p-3 rounded-xl flex-1 border border-border">
                                     <div className="flex items-center justify-between">
