@@ -146,7 +146,7 @@ export default function ChallengesPage() {
               <div className="h-14 w-14 flex items-center justify-center rounded-full bg-primary text-(--text-inverted)">
                 <Rocket className="h-6 w-6" />
               </div>
-              <p className="mt-2 font-semibold">Start Here</p>
+              <p className="mt-2 font-semibold">Começe aqui</p>
               <span className="text-sm" style={{ color: "var(--subtle-text)" }}>
                 Level 1
               </span>

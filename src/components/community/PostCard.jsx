@@ -6,6 +6,8 @@ import { Button } from "../ui/button";
 import getUsers from "@/data/users";
 import { useState } from "react";
 import PostCommentsModal from "./PostCommentModal";
+import { useNavigate } from "react-router";
+import { Routes } from "@/routes/routes";
 
 function formatTimestamp(timestamp) {
     const date = new Date(timestamp);
@@ -22,13 +24,21 @@ function formatTimestamp(timestamp) {
 }
 
 export default function PostCard({ post, isLiked, onToggleLike }) {
+    const navigate = useNavigate()
     const user = getUsers.filter((user) => user.id === post.authorId)[0];
     const [showComments, setShowComments] = useState(false);
+
+    
+    function navigateToProfile(){
+        navigate(Routes.ViewProfile.replace(":id", user.id))
+    }
+
+
 
     return (
         <>
             <Card className="p-6 space-y-4">
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-3" onClick={navigateToProfile}>
                     <Avatar className="h-12 w-12">
                         <AvatarImage src={user.foto} alt={user.nome} />
                         <AvatarFallback className="bg-primary/10 text-primary">
