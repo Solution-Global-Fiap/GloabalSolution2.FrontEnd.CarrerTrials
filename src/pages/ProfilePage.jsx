@@ -48,7 +48,7 @@ export default function ProfilePage() {
   const levelProgress = (currentLevelXP / XP_PER_LEVEL) * 100;
 
   return (
-    <div className="space-y-8 my-20 sm:px-2">
+    <div className="space-y-8 my-20 ">
       <Card
         className="p-8 rounded-2xl shadow-md"
         style={{
