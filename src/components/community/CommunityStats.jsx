@@ -1,16 +1,15 @@
 import { Card } from "@/components/ui/card";
-import { Users, MessageSquare, BookOpen, Trophy } from "lucide-react";
+import { Users, MessageSquare, BookOpen } from "lucide-react";
 
-const stats = [
-    { icon: Users, value: "1,247", label: "Membros"},
-    { icon: MessageSquare, value: "3,492", label: "Publicações"},
-    { icon: BookOpen, value: "156", label: "Mentores"},
-    { icon: Trophy, value: "847", label: "Ativos Hoje"},
-];
+export default function CommunityStats({ postsCount, usersCount, mentorsCount }) {
+    const stats = [
+        { icon: Users, value: usersCount.toString(), label: "Membros" },
+        { icon: MessageSquare, value: postsCount.toString(), label: "Publicações" },
+        { icon: BookOpen, value: mentorsCount.toString(), label: "Mentores" },
+    ];
 
-export default function CommunityStats() {
     return (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {stats.map((stat) => {
                 const Icon = stat.icon;
                 return (

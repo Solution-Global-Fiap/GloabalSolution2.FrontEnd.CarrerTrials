@@ -13,7 +13,7 @@ const getUsers = [
     "area": "Dados",
     "xp": 0,
     "level": 0,
-    "completedChallenges": [], 
+    "completedChallenges": [],
     "habilidadesTecnicas": [
       "Pandas",
       "Machine Learning",
@@ -72,6 +72,7 @@ const getUsers = [
     "resumo": "Profissional focado em Design.",
     "localizacao": "São Paulo/SP",
     "area": "Design",
+    "xp": 582193, "level": 34, "completedChallenges": [3, 11, 7, 4, 15],
     "habilidadesTecnicas": [
       "Figma",
       "Prototipagem",
@@ -130,6 +131,7 @@ const getUsers = [
     "resumo": "Profissional focado em Design.",
     "localizacao": "Fortaleza/CE",
     "area": "Design",
+    "xp": 198334, "level": 58, "completedChallenges": [1, 5, 12],
     "habilidadesTecnicas": [
       "UI",
       "Prototipagem",
@@ -188,6 +190,7 @@ const getUsers = [
     "resumo": "Profissional focado em Qualidade.",
     "localizacao": "Fortaleza/CE",
     "area": "Qualidade",
+    "xp": 77129, "level": 7, "completedChallenges": [],
     "habilidadesTecnicas": [
       "Selenium",
       "Testes automatizados"
@@ -245,6 +248,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "São Paulo/SP",
     "area": "Infraestrutura",
+    "xp": 948221, "level": 92, "completedChallenges": [2, 9, 14, 6, 1, 11, 16],
     "habilidadesTecnicas": [
       "Kubernetes",
       "Docker",
@@ -303,6 +307,7 @@ const getUsers = [
     "resumo": "Profissional focado em Dados.",
     "localizacao": "Curitiba/PR",
     "area": "Dados",
+    "xp": 412399, "level": 44, "completedChallenges": [8],
     "habilidadesTecnicas": [
       "SQL",
       "Pandas",
@@ -361,6 +366,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "Recife/PE",
     "area": "Infraestrutura",
+    "xp": 103441, "level": 25, "completedChallenges": [6, 3, 1, 12, 7],
     "habilidadesTecnicas": [
       "AWS",
       "Docker",
@@ -419,6 +425,7 @@ const getUsers = [
     "resumo": "Profissional focado em Design.",
     "localizacao": "Fortaleza/CE",
     "area": "Design",
+    "xp": 990113, "level": 87, "completedChallenges": [5, 11, 14, 9],
     "habilidadesTecnicas": [
       "UI",
       "Prototipagem",
@@ -477,6 +484,7 @@ const getUsers = [
     "resumo": "Profissional focado em Qualidade.",
     "localizacao": "Belo Horizonte/MG",
     "area": "Qualidade",
+    "xp": 129992, "level": 10, "completedChallenges": [4, 2],
     "habilidadesTecnicas": [
       "Testes automatizados",
       "Selenium"
@@ -534,6 +542,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Belo Horizonte/MG",
     "area": "Desenvolvimento",
+    "xp": 334199, "level": 63, "completedChallenges": [3, 6, 8, 10, 11, 12],
     "habilidadesTecnicas": [
       "JavaScript",
       "Node.js",
@@ -590,6 +599,7 @@ const getUsers = [
     "resumo": "Profissional focado em Dados.",
     "localizacao": "Recife/PE",
     "area": "Dados",
+    "xp": 501919, "level": 55, "completedChallenges": [],
     "habilidadesTecnicas": [
       "Machine Learning",
       "Python",
@@ -646,6 +656,7 @@ const getUsers = [
     "resumo": "Profissional focado em Design.",
     "localizacao": "Fortaleza/CE",
     "area": "Design",
+    "xp": 921155, "level": 73, "completedChallenges": [1, 2, 3, 4, 5],
     "habilidadesTecnicas": [
       "UI",
       "Figma",
@@ -702,6 +713,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "Recife/PE",
     "area": "Infraestrutura",
+    "xp": 229917, "level": 12, "completedChallenges": [6, 8],
     "habilidadesTecnicas": [
       "AWS",
       "Docker",
@@ -758,6 +770,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "Belo Horizonte/MG",
     "area": "Infraestrutura",
+    "xp": 88192, "level": 3, "completedChallenges": [12, 14, 16],
     "habilidadesTecnicas": [
       "AWS",
       "Docker",
@@ -814,6 +827,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Belo Horizonte/MG",
     "area": "Desenvolvimento",
+    "xp": 441299, "level": 41, "completedChallenges": [9],
     "habilidadesTecnicas": [
       "JavaScript",
       "SQL",
@@ -870,6 +884,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Fortaleza/CE",
     "area": "Desenvolvimento",
+    "xp": 717183, "level": 81, "completedChallenges": [1, 7, 8, 11, 12, 14],
     "habilidadesTecnicas": [
       "Node.js",
       "React",
@@ -926,6 +941,7 @@ const getUsers = [
     "resumo": "Profissional focado em Dados.",
     "localizacao": "Curitiba/PR",
     "area": "Dados",
+    "xp": 611991, "level": 69, "completedChallenges": [3, 4, 15],
     "habilidadesTecnicas": [
       "SQL",
       "Python",
@@ -981,6 +997,7 @@ const getUsers = [
     "cargo": "UI/UX Designer",
     "resumo": "Profissional focado em Design.",
     "localizacao": "Fortaleza/CE",
+    "xp": 182317, "level": 17, "completedChallenges": [],
     "area": "Design",
     "habilidadesTecnicas": [
       "Figma",
@@ -1038,6 +1055,7 @@ const getUsers = [
     "resumo": "Profissional focado em Segurança.",
     "localizacao": "Belo Horizonte/MG",
     "area": "Segurança",
+    "xp": 771992, "level": 74, "completedChallenges": [2, 5, 7, 8, 12],
     "habilidadesTecnicas": [
       "Firewalls",
       "Pentest",
@@ -1094,6 +1112,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Recife/PE",
     "area": "Desenvolvimento",
+    "xp": 191188, "level": 22, "completedChallenges": [13, 15],
     "habilidadesTecnicas": [
       "JavaScript",
       "Node.js",
@@ -1150,6 +1169,7 @@ const getUsers = [
     "resumo": "Profissional focado em Qualidade.",
     "localizacao": "Belo Horizonte/MG",
     "area": "Qualidade",
+    "xp": 921999, "level": 90, "completedChallenges": [1, 3, 5, 7, 9, 11, 13],
     "habilidadesTecnicas": [
       "Selenium",
       "Testes automatizados"
@@ -1205,6 +1225,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "São Paulo/SP",
     "area": "Infraestrutura",
+    "xp": 288831, "level": 16, "completedChallenges": [],
     "habilidadesTecnicas": [
       "AWS",
       "Kubernetes",
@@ -1261,6 +1282,7 @@ const getUsers = [
     "resumo": "Profissional focado em Dados.",
     "localizacao": "São Paulo/SP",
     "area": "Dados",
+    "xp": 449199, "level": 32, "completedChallenges": [6],
     "habilidadesTecnicas": [
       "Python",
       "Pandas",
@@ -1317,6 +1339,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "Rio de Janeiro/RJ",
     "area": "Infraestrutura",
+    "xp": 233912, "level": 14, "completedChallenges": [2, 9, 10, 14],
     "habilidadesTecnicas": [
       "AWS",
       "Docker",
@@ -1373,6 +1396,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Belo Horizonte/MG",
     "area": "Desenvolvimento",
+    "xp": 951882, "level": 98, "completedChallenges": [1, 5, 6, 7, 10, 12, 15, 17],
     "habilidadesTecnicas": [
       "SQL",
       "Node.js",
@@ -1429,6 +1453,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Recife/PE",
     "area": "Desenvolvimento",
+    "xp": 390111, "level": 31, "completedChallenges": [8, 3],
     "habilidadesTecnicas": [
       "React",
       "Node.js",
@@ -1485,6 +1510,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "Rio de Janeiro/RJ",
     "area": "Infraestrutura",
+    "xp": 650013, "level": 60, "completedChallenges": [4, 5, 6],
     "habilidadesTecnicas": [
       "AWS",
       "Docker",
@@ -1541,6 +1567,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Rio de Janeiro/RJ",
     "area": "Desenvolvimento",
+    "xp": 129991, "level": 9, "completedChallenges": [],
     "habilidadesTecnicas": [
       "JavaScript",
       "React",
@@ -1597,6 +1624,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Belo Horizonte/MG",
     "area": "Desenvolvimento",
+    "xp": 812991, "level": 77, "completedChallenges": [7, 8, 9, 11],
     "habilidadesTecnicas": [
       "JavaScript",
       "React",
@@ -1653,6 +1681,7 @@ const getUsers = [
     "resumo": "Profissional focado em Qualidade.",
     "localizacao": "Curitiba/PR",
     "area": "Qualidade",
+    "xp": 518118, "level": 56, "completedChallenges": [3, 4, 12],
     "habilidadesTecnicas": [
       "Selenium",
       "Testes automatizados"
@@ -1708,6 +1737,7 @@ const getUsers = [
     "resumo": "Profissional focado em Dados.",
     "localizacao": "Curitiba/PR",
     "area": "Dados",
+    "xp": 912882, "level": 88, "completedChallenges": [1, 2, 3, 4, 5, 6, 7],
     "habilidadesTecnicas": [
       "Python",
       "Pandas",
@@ -1764,6 +1794,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "Curitiba/PR",
     "area": "Infraestrutura",
+    "xp": 188118, "level": 14, "completedChallenges": [10, 14],
     "habilidadesTecnicas": [
       "Kubernetes",
       "AWS",
@@ -1820,6 +1851,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Curitiba/PR",
     "area": "Desenvolvimento",
+    "xp": 793912, "level": 79, "completedChallenges": [2],
     "habilidadesTecnicas": [
       "Node.js",
       "JavaScript",
@@ -1876,6 +1908,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "Rio de Janeiro/RJ",
     "area": "Infraestrutura",
+    "xp": 399012, "level": 27, "completedChallenges": [3, 6, 8],
     "habilidadesTecnicas": [
       "Docker",
       "Kubernetes",
@@ -1932,6 +1965,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Rio de Janeiro/RJ",
     "area": "Desenvolvimento",
+    "xp": 118199, "level": 11, "completedChallenges": [],
     "habilidadesTecnicas": [
       "Node.js",
       "SQL",
@@ -1988,6 +2022,7 @@ const getUsers = [
     "resumo": "Profissional focado em Segurança.",
     "localizacao": "Fortaleza/CE",
     "area": "Segurança",
+    "xp": 901331, "level": 93, "completedChallenges": [2, 4, 6, 8, 10, 12, 14, 16],
     "habilidadesTecnicas": [
       "Pentest",
       "Firewalls",
@@ -2044,6 +2079,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "Fortaleza/CE",
     "area": "Infraestrutura",
+    "xp": 330001, "level": 43, "completedChallenges": [7, 9],
     "habilidadesTecnicas": [
       "Docker",
       "AWS",
@@ -2100,6 +2136,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "Belo Horizonte/MG",
     "area": "Infraestrutura",
+    "xp": 881122, "level": 78, "completedChallenges": [5],
     "habilidadesTecnicas": [
       "Docker",
       "AWS",
@@ -2156,6 +2193,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "Recife/PE",
     "area": "Infraestrutura",
+    "xp": 501221, "level": 52, "completedChallenges": [15, 2, 9],
     "habilidadesTecnicas": [
       "AWS",
       "Docker",
@@ -2212,6 +2250,7 @@ const getUsers = [
     "resumo": "Profissional focado em Dados.",
     "localizacao": "Rio de Janeiro/RJ",
     "area": "Dados",
+    "xp": 119981, "level": 13, "completedChallenges": [],
     "habilidadesTecnicas": [
       "Machine Learning",
       "Pandas",
@@ -2268,6 +2307,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Fortaleza/CE",
     "area": "Desenvolvimento",
+    "xp": 771882, "level": 76, "completedChallenges": [17],
     "habilidadesTecnicas": [
       "React",
       "JavaScript",
@@ -2324,6 +2364,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "Curitiba/PR",
     "area": "Infraestrutura",
+    "xp": 881002, "level": 89, "completedChallenges": [1, 2, 3, 6],
     "habilidadesTecnicas": [
       "AWS",
       "Docker",
@@ -2380,6 +2421,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Fortaleza/CE",
     "area": "Desenvolvimento",
+    "xp": 421110, "level": 49, "completedChallenges": [8, 11, 14],
     "habilidadesTecnicas": [
       "SQL",
       "React",
@@ -2436,6 +2478,7 @@ const getUsers = [
     "resumo": "Profissional focado em Design.",
     "localizacao": "São Paulo/SP",
     "area": "Design",
+    "xp": 998221, "level": 100, "completedChallenges": [1, 4, 8, 12, 16],
     "habilidadesTecnicas": [
       "Figma",
       "UI",
@@ -2492,6 +2535,7 @@ const getUsers = [
     "resumo": "Profissional focado em Dados.",
     "localizacao": "Fortaleza/CE",
     "area": "Dados",
+    "xp": 331991, "level": 40, "completedChallenges": [],
     "habilidadesTecnicas": [
       "Pandas",
       "SQL",
@@ -2548,6 +2592,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Recife/PE",
     "area": "Desenvolvimento",
+    "xp": 711219, "level": 62, "completedChallenges": [7, 13],
     "habilidadesTecnicas": [
       "React",
       "Node.js",
@@ -2604,6 +2649,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Rio de Janeiro/RJ",
     "area": "Desenvolvimento",
+    "xp": 201112, "level": 19, "completedChallenges": [2],
     "habilidadesTecnicas": [
       "React",
       "SQL",
@@ -2660,6 +2706,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Rio de Janeiro/RJ",
     "area": "Desenvolvimento",
+    "xp": 890119, "level": 95, "completedChallenges": [1, 5, 9, 13],
     "habilidadesTecnicas": [
       "JavaScript",
       "SQL",
@@ -2716,6 +2763,7 @@ const getUsers = [
     "resumo": "Profissional focado em Design.",
     "localizacao": "Rio de Janeiro/RJ",
     "area": "Design",
+    "xp": 551833, "level": 53, "completedChallenges": [4, 7, 10],
     "habilidadesTecnicas": [
       "Prototipagem",
       "UI",
@@ -2772,6 +2820,7 @@ const getUsers = [
     "resumo": "Profissional focado em Dados.",
     "localizacao": "Curitiba/PR",
     "area": "Dados",
+    "xp": 299171, "level": 30, "completedChallenges": [3],
     "habilidadesTecnicas": [
       "SQL",
       "Python",
@@ -2828,6 +2877,7 @@ const getUsers = [
     "resumo": "Profissional focado em Dados.",
     "localizacao": "Curitiba/PR",
     "area": "Dados",
+    "xp": 681991, "level": 67, "completedChallenges": [2, 5, 8],
     "habilidadesTecnicas": [
       "Machine Learning",
       "Python",
@@ -2884,6 +2934,7 @@ const getUsers = [
     "resumo": "Profissional focado em Dados.",
     "localizacao": "Curitiba/PR",
     "area": "Dados",
+    "xp": 171918, "level": 20, "completedChallenges": [],
     "habilidadesTecnicas": [
       "Python",
       "SQL",
@@ -2940,6 +2991,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Curitiba/PR",
     "area": "Desenvolvimento",
+    "xp": 411889, "level": 48, "completedChallenges": [6, 7, 8, 9],
     "habilidadesTecnicas": [
       "JavaScript",
       "Node.js",
@@ -2996,6 +3048,7 @@ const getUsers = [
     "resumo": "Profissional focado em Infraestrutura.",
     "localizacao": "Recife/PE",
     "area": "Infraestrutura",
+    "xp": 600991, "level": 71, "completedChallenges": [1, 3, 5, 7, 9, 11, 13, 15],
     "habilidadesTecnicas": [
       "Docker",
       "Kubernetes",
@@ -3052,6 +3105,7 @@ const getUsers = [
     "resumo": "Profissional focado em Segurança.",
     "localizacao": "Recife/PE",
     "area": "Segurança",
+    "xp": 199331, "level": 18, "completedChallenges": [12],
     "habilidadesTecnicas": [
       "Pentest",
       "Firewalls",
@@ -3108,6 +3162,7 @@ const getUsers = [
     "resumo": "Profissional focado em Segurança.",
     "localizacao": "Fortaleza/CE",
     "area": "Segurança",
+    "xp": 973331, "level": 97, "completedChallenges": [4, 6, 10, 14, 17],
     "habilidadesTecnicas": [
       "Firewalls",
       "Linux",
@@ -3164,6 +3219,7 @@ const getUsers = [
     "resumo": "Profissional focado em Qualidade.",
     "localizacao": "Curitiba/PR",
     "area": "Qualidade",
+    "xp": 522110, "level": 50, "completedChallenges": [8, 9],
     "habilidadesTecnicas": [
       "Selenium",
       "Testes automatizados"
@@ -3219,6 +3275,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Belo Horizonte/MG",
     "area": "Desenvolvimento",
+    "xp": 712883, "level": 64, "completedChallenges": [1, 4, 7, 9, 12, 16],
     "habilidadesTecnicas": [
       "SQL",
       "React",
@@ -3275,6 +3332,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Curitiba/PR",
     "area": "Desenvolvimento",
+    "xp": 188237, "level": 23, "completedChallenges": [3, 5, 6, 8, 11],
     "habilidadesTecnicas": [
       "Node.js",
       "React",
@@ -3331,6 +3389,7 @@ const getUsers = [
     "resumo": "Profissional focado em Desenvolvimento.",
     "localizacao": "Rio de Janeiro/RJ",
     "area": "Desenvolvimento",
+    "xp": 903311, "level": 78, "completedChallenges": [2, 4, 5, 7, 10, 13, 17],
     "habilidadesTecnicas": [
       "React",
       "Node.js",

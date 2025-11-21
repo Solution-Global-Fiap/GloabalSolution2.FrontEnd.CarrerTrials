@@ -1,16 +1,15 @@
 import getUsers from "../data/users";
 
-export async function loginUser(email, password ) {
+export async function loginUser(email, password) {
   try {
-    console.log(getUsers)
-    console.log(email, password)
     let result = getUsers.filter(user => email == user.email && password == user.senha)
     
     if (result.length > 0) {
       const user = result[0];
       setAuthenticated(true, user);
       return { success: true, user };
-    } else {
+    } 
+    else {
       return { success: false, message: "Usuário ou senha incorretos." };
     }
   } catch (error) {

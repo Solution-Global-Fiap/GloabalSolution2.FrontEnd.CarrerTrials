@@ -3,7 +3,7 @@ import PostFeed from "./PostFeed";
 import DiscussionsTab from "./DiscussionsTab";
 import MentorshipTab from "./MentorshipTab";
 
-export default function CommunityTabs({ likedPosts, toggleLike }) {
+export default function CommunityTabs({ posts, mentors, likedPosts, toggleLike }) {
     return (
         <Tabs defaultValue="feed" className="space-y-6">
             <TabsList className="grid w-full grid-cols-3 gap-1 bg-primary/10">
@@ -13,7 +13,7 @@ export default function CommunityTabs({ likedPosts, toggleLike }) {
             </TabsList>
 
             <TabsContent value="feed" className="space-y-4">
-                <PostFeed likedPosts={likedPosts} toggleLike={toggleLike} />
+                <PostFeed posts={posts} likedPosts={likedPosts} toggleLike={toggleLike} />
             </TabsContent>
 
             <TabsContent value="discussions" className="space-y-4">
@@ -21,7 +21,7 @@ export default function CommunityTabs({ likedPosts, toggleLike }) {
             </TabsContent>
 
             <TabsContent value="mentorship" className="space-y-4">
-                <MentorshipTab />
+                <MentorshipTab users={mentors} />
             </TabsContent>
         </Tabs>
     );

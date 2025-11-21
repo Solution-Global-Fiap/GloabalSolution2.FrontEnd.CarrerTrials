@@ -1,15 +1,18 @@
 import { Card } from "@/components/ui/card";
 import { Trophy } from "lucide-react";
 
-const leaderboard = [
-    { rank: 1, name: "Alex Thompson", xp: 2450, level: 15, career: "Full Stack Developer" },
-    { rank: 2, name: "Emma Wilson", xp: 2180, level: 12, career: "Data Analyst" },
-    { rank: 3, name: "Jordan Lee", xp: 1950, level: 11, career: "UX Designer" },
-    { rank: 4, name: "Sam Patel", xp: 1720, level: 10, career: "Project Manager" },
-    { rank: 5, name: "Casey Martinez", xp: 1580, level: 9, career: "Full Stack Developer" },
-];
+export default function Leaderboard({ users }) {
+    const topUsers = [...users]
+        .sort((a, b) => b.xp - a.xp)
+        .slice(0, 5)
+        .map((user, index) => ({
+            rank: index + 1,
+            name: user.nome,
+            xp: user.xp,
+            level: user.level,
+            career: user.cargo,
+        }));
 
-export default function Leaderboard() {
     return (
         <Card className="p-6 space-y-4">
             <div className="flex items-center gap-2">
@@ -17,7 +20,7 @@ export default function Leaderboard() {
                 <h3 className="font-semibold">Ranking</h3>
             </div>
             <div className="space-y-3">
-                {leaderboard.map((entry) => (
+                {topUsers.map((entry) => (
                     <div key={entry.rank} className="flex items-center gap-3 p-3 rounded-lg bg-accent">
                         <div
                             className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold ${entry.rank === 1

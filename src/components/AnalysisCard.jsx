@@ -122,7 +122,6 @@ export default function AnalysisCard({ steps, onComplete }) {
 
     return (
         <Card className="p-8 md:p-12">
-            {/* Header */}
             <div className="text-center space-y-4">
                 <div className="inline-flex items-center justify-center size-30 rounded-2xl bg-primary/10 mb-2 relative">
                     {theme === "light" ? (
@@ -138,7 +137,6 @@ export default function AnalysisCard({ steps, onComplete }) {
                 </h1>
             </div>
 
-            {/* Progress */}
             <div className="space-y-3">
                 <Progress value={progress} className="h-3" />
                 <div className="flex items-center justify-between text-sm">
@@ -152,14 +150,12 @@ export default function AnalysisCard({ steps, onComplete }) {
                 </div>
             </div>
 
-            {/* Steps */}
             <div className="space-y-4 pt-4">
                 {steps.map((step, i) => (
                     <StepItem key={step.id} step={step} index={i} current={currentStep} />
                 ))}
             </div>
 
-            {/* Fun fact */}
             <div className="bg-accent rounded-xl p-6 space-y-2">
                 <p className="text-sm font-semibold text-accent-foreground">
                     Você sabia?
