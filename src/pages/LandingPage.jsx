@@ -47,19 +47,19 @@ export default function LandingPage() {
       <section className="py-20 md:py-32">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center space-y-6">
-            <Badge variant="outline" className="gap-2 py-2 px-4 text-(--text-inverted)">
+            <Badge variant="outline" className="gap-2 py-2 px-4 text-(--text-inverted)" style={{ "border-color": "var(--text-third)", }}>
               <Sparkles className="h-4 w-4" />
               Powered by AI
             </Badge>
 
             <h1 className="text-(--text-inverted) text-4xl md:text-6xl lg:text-7xl font-bold leading-tight max-w-4xl mx-auto">
               Desenvolva sua carreira com{" "}<br/>
-              <span className="bg-linear-to-r from-muted via-secondary to-muted bg-clip-text text-transparent">
+              <span className="">
                 IA integrada
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-(--text-secondary) max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-(--text-third) max-w-2xl mx-auto">
               CareerTrials conecta você com desafios personalizados, comunidade ativa e mentoria inteligente para acelerar seu desenvolvimento profissional.
             </p>
 
@@ -84,15 +84,15 @@ export default function LandingPage() {
             <div className="grid grid-cols-3 gap-8 pt-16 max-w-2xl mx-auto">
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-(--text-inverted)">1.2k+</div>
-                <div className="text-sm text-(--text-secondary)">Desenvolvedores</div>
+                <div className="text-sm text-(--text-third)">Desenvolvedores</div>
               </div>
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-(--text-inverted)">500+</div>
-                <div className="text-sm text-(--text-secondary)">Desafios</div>
+                <div className="text-sm text-(--text-third)">Desafios</div>
               </div>
               <div>
                 <div className="text-3xl md:text-4xl font-bold text-(--text-inverted)">95%</div>
-                <div className="text-sm text-(--text-secondary)">Satisfação</div>
+                <div className="text-sm text-(--text-third)">Satisfação</div>
               </div>
             </div>
           </div>
@@ -102,7 +102,7 @@ export default function LandingPage() {
       <section className="py-20 md:py-32" style={{ background: "var(--bg-section)" }}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center space-y-4 mb-16">
-            <Badge variant="outline" className="gap-2">
+            <Badge variant="outline" className="gap-2" style={{ "border-color": "var(--text-third)", }}>
               <Target className="h-4 w-4" />
               Funcionalidades
             </Badge>
@@ -139,14 +139,14 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <Badge variant="outline" className="gap-2 text-(--text-inverted)">
+              <Badge variant="outline" className="gap-2 text-(--text-inverted)" style={{ "border-color": "var(--text-third)", }}>
                 <TrendingUp className="h-4 w-4" />
                 Vantagens
               </Badge>
               <h2 className="text-3xl md:text-5xl font-bold text-(--text-inverted)">
                 Por que escolher o CareerTrials?
               </h2>
-              <p className="text-(--text-secondary) text-lg">
+              <p className="text-(--text-third) text-lg">
                 Nossa plataforma foi projetada para desenvolvedores que querem crescer de forma estruturada e eficiente, com suporte de IA em cada etapa.
               </p>
               <div className="space-y-3">
