@@ -81,8 +81,7 @@ export default function QuizModal({ challenge, onClose }) {
 
             <Button 
               onClick={onClose}
-              className="w-full text-white font-semibold rounded-xl py-3"
-              style={{ background: "var(--primary)" }}
+              className="w-full"
             >
               Fechar
             </Button>
