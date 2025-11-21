@@ -1,7 +1,6 @@
 import AnalysisCard from "@/components/AnalysisCard";
 import AIChat from "@/components/chat/AIChat";
-import { useState } from "react";
-import { challengesData } from "@/data/challengesData";
+import { useEffect, useState } from "react";
 import ChallengeCard from "../components/ChallengeCard.jsx";
 import TimelineNode from "../components/TimelineMode.jsx";
 import { Rocket } from "lucide-react";
@@ -9,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import QuizModal from "@/components/QuizModal.jsx";
 import UploadModal from "@/components/UploadModal.jsx";
 import { checkIsAlreadyCompleted } from "@/utils/completeChallenge.js";
+import { getIsChatCompleted, getOrCreateSession, getStoredChallenges, getUser, removeCurrentSession, setIsChatCompleted, setStoredChallenges } from "@/hooks/useAuth.jsx";
 
 const STEPS = {
   CHAT: "chat",
@@ -24,62 +24,82 @@ const analysisSteps = [
   { id: 5, label: "Gerando recursos de aprendizagem", duration: 1000 },
 ];
 
-let collectedAnswers = [];
-
-const mockConversation = [
-  "Legal, antes de começarmos, qual é o objetivo da sua carreira hoje?",
-  "Entendi. E qual experiência você já tem nessa área?",
-  "Perfeito. Qual dessas áreas você sente mais dificuldade atualmente?",
-  "Ótimo. Em quanto tempo você espera alcançar seu próximo nível profissional?",
-  "Interessante! O que mais te motiva nessa jornada?",
-  "Beleza, acho que já tenho o suficiente. Pronta pra analisar seu perfil!"
-];
-
 export default function ChallengesPage() {
   const [selectedChallenge, setSelectedChallenge] = useState(null);
-  const levels = [...new Set(challengesData.map((c) => c.level))];
+  const [challenges, setChallenges] = useState(() => getStoredChallenges()?? []);
   const [currentStep, setCurrentStep] = useState(() => {
-    const stored = localStorage.getItem("chatCompleted");
-    const chatCompleted = stored === "true";
+    const chatCompleted = getIsChatCompleted() === "true";
     return chatCompleted 
       ? STEPS.CHALLENGES
       : STEPS.CHAT
   });
-  const [careerData, setCareerData] = useState(null);
   const [chatLocked, setChatLocked] = useState(false);
-  const [mockIndex, setMockIndex] = useState(1);
+  const [session, setSession] = useState(null);
+  const levels = [...new Set(challenges.map((challenge) => challenge.level))];
+  const user = getUser();
 
-  const handleChatComplete = async (careerGoal) => {
-    setCareerData({ careerGoal });
+  useEffect(() => {
+    getOrCreateSession(user.id).then(setSession)
+  }, [user.id]);
+
+  const handleChatComplete = async () => {
+    setIsChatCompleted(true);
     setCurrentStep(STEPS.ANALYSIS);
-    localStorage.setItem("chatCompleted", true);
+    let response = await fetch(import.meta.env.VITE_AI_API + `/session/${session.session_id}/${user.id}/complete`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+    if (!response.ok) {
+      console.error("Não foi possível fazer a requisição: " + await response.text());
+      return;
+    }
+
+    const reply = await response.json();
+
+    setChallenges(reply.challenges?? []);
+    setStoredChallenges(reply.challenges?? []);
+    setTimeout(() => {
+      setCurrentStep(STEPS.CHALLENGES);
+      removeCurrentSession();
+    }, 500);
   };
 
   const handleMessage = async (message) => {
     if (chatLocked) return;
 
-    await new Promise((r) => setTimeout(r, 600));
+    let isLast = false;
 
-    if (mockIndex > 0) {
-      collectedAnswers.push({ question: mockConversation[mockIndex - 1], answer: message });
+    let response = await fetch(import.meta.env.VITE_AI_API + `/session/${session.session_id}/${user.id}/message`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({message: message})
+    });
+
+    if (!response.ok) {
+      console.error("Não foi possível fazer a requisição: " + await response.text());
+      return;
     }
 
-    const isLast = mockIndex >= mockConversation.length - 1;
+    let reply = (await response.json()).response;
 
-    const reply = mockConversation[mockIndex];
-    setMockIndex(Math.min(mockIndex + 1, mockConversation.length - 1));
-
-    if (isLast) {
+    if (reply.includes("GENERATE_CHALLENGES")) {
+      isLast = true;
       setChatLocked(true);
       setTimeout(async () => {
-        await handleChatComplete(collectedAnswers[0]?.answer ?? message);
+        await handleChatComplete();
       }, 2000);
+
+      reply = "Beleza, acho que já tenho o suficiente. Pronto pra analisar seu perfil!"
     }
 
     return {
       reply,
-      isComplete: isLast,
-      careerGoal: isLast ? collectedAnswers[0]?.answer ?? message : null
+      isComplete: isLast
     };
   };
 
@@ -89,7 +109,7 @@ export default function ChallengesPage() {
         <div className="w-full max-w-4xl h-full">
           <AIChat
             disabled={chatLocked}
-            initialMessage={mockConversation[0]}
+            initialMessage={"Legal, antes de começarmos, qual é o objetivo da sua carreira hoje?"}
             onSendMessage={handleMessage}
           />
         </div>
@@ -108,15 +128,14 @@ export default function ChallengesPage() {
         >
           <AnalysisCard
             steps={analysisSteps}
-            careerGoal={careerData?.careerGoal}
-            onComplete={() => setCurrentStep(STEPS.CHALLENGES)}
+            onComplete={() => {}}
           />
         </div>
       </div>
     );
   }
 
-  if (currentStep == STEPS.CHALLENGES) {
+  if (currentStep === STEPS.CHALLENGES) {
     return (
       <div
         className="min-h-screen my-20"
@@ -138,7 +157,7 @@ export default function ChallengesPage() {
             }}
           >
             <div
-              className="absolute left-1/2 -translate-x-0.5 top-10 bottom-45 w-[3px] z-0"
+              className="absolute left-1/2 -translate-x-0.5 top-10 bottom-50 w-[3px] z-0"
               style={{ background: "var(--border)" }}
             />
 
@@ -152,7 +171,9 @@ export default function ChallengesPage() {
               </span>
             </div>
 
-            {levels.map((level) => (
+            {levels
+              .sort()
+              .map((level) => (
               <div key={level}>
                 <div className="flex justify-center my-10 sticky">
                   <Badge
@@ -167,8 +188,8 @@ export default function ChallengesPage() {
                   </Badge>
                 </div>
 
-                {challengesData
-                  .filter((c) => c.level === level)
+                {challenges
+                  .filter((challenge) => challenge.level === level)
                   .map((challenge, index) => (
                     <div key={challenge.id} className="relative z-10">
                       <TimelineNode isChecked={checkIsAlreadyCompleted(challenge)} />
@@ -191,7 +212,7 @@ export default function ChallengesPage() {
           />
         )}
 
-        {["Código", "Projeto"].includes(selectedChallenge?.type) && (
+        {["Code", "Project"].includes(selectedChallenge?.type) && (
           <UploadModal
             challenge={selectedChallenge}
             onClose={() => setSelectedChallenge(null)}

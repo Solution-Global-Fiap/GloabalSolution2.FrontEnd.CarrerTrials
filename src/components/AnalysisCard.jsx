@@ -1,4 +1,3 @@
-import { Sparkles } from "lucide-react"
 import { Card } from "./ui/card"
 import { Progress } from "./ui/progress"
 import { useEffect, useState } from "react"
