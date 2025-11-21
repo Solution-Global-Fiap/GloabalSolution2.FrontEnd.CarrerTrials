@@ -6,12 +6,13 @@ import LoginPage from "../pages/LoginPage.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
 import MainLayout from "../pages/layouts/MainLayout.jsx";
 import ChallengesPage from "../pages/ChallengesPage.jsx";
-import ComunityPage from "../pages/ComunityPage.jsx";
+import CommunityPage from "../pages/CommunityPage.jsx";
 import ProfilePage from "../pages/ProfilePage.jsx";
+import ToolBarLayout from "@/pages/layouts/ToolBarLayout.jsx";
 
 const relativeTo = (childPath, parentPath) => {
   return childPath.replace(parentPath + "/", "");
-}
+};
 
 const router = createBrowserRouter([
   {
@@ -31,15 +32,24 @@ const router = createBrowserRouter([
           },
           {
             path: Routes.Comunity,
-            Component: ComunityPage
+            Component: CommunityPage,
           },
           {
             path: Routes.Profile,
-            Component: ProfilePage
-          }
-        ]
-      }
-    ]
+            Component: ProfilePage,
+          },
+        ],
+      },
+      {
+        Component: ToolBarLayout,
+        children: [
+          {
+            path: Routes.ViewProfile,
+            Component: ProfilePage,
+          },
+        ],
+      },
+    ],
   },
   {
     path: Routes.Auth,
@@ -51,7 +61,7 @@ const router = createBrowserRouter([
       {
         path: relativeTo(Routes.Login, Routes.Auth),
         Component: LoginPage,
-      }
+      },
     ],
   },
   {

@@ -13,6 +13,8 @@ export default {
         textSecondary: "var(--text-secondary)",
         cardBg: "var(--card-bg)",
         cardBorder: "var(--card-border)",
+        primary: "var(--primary)",
+        "primary-foreground": "var(--text-inverted)",
       },
       backgroundImage: {
         "brand-gradient":

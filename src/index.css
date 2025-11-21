@@ -129,24 +129,26 @@ body {
   overflow-y: auto;
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+/* Chrome */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-/* WebKit */
-html::-webkit-scrollbar {
-  width: 10px;
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 9999px;
 }
 
-html::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: var(--scrollbar-track);
 }
 
-html::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb);
-  border-radius: 8px;
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
 }
+
 
 [data-state="open"]>.dialog-overlay,
 .dialog-overlay {

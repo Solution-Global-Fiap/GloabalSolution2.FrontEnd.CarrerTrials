@@ -5,6 +5,7 @@ import ModeToggle from "./ModeToggle";
 import { getUser } from "@/hooks/useAuth";
 import { useTheme } from "./ThemeProvider";
 import { useState } from "react";
+import CareerTrialsLogo from "./CareerTrialsLogo";
 
 export default function Navbar() {
   const { theme } = useTheme();
@@ -23,15 +24,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto h-16 px-4 flex items-center justify-between">
 
-        <div className="flex items-center gap-2">
-          <img
-            src={theme === "light" ? "/Logo-Light.png" : "/Logo-Dark.png"}
-            className="h-10 w-10 transition-none" 
-          />
-          <span className="font-semibold text-lg" style={{ color: "var(--text)" }}>
-            CareerTrials
-          </span>
-        </div>
+        <CareerTrialsLogo/>
 
         <nav className="hidden md:flex items-center gap-2 text-sm">
           {menuItems.map((item) => (
