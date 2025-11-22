@@ -6,6 +6,9 @@ CareerTrials é uma plataforma inovadora que conecta desenvolvedores com desafio
 
 ![CareerTrials](./public/Tela.png)
 
+## Importante:
+**Temos uma integração com a IA do Gemini, por favor tomar cuidado com a quantidade de uso na funcionalidade de gerar desafios, para que não acabe os tokens diários gratuitos**
+
 ## ✨ Funcionalidades
 
 - **🎯 Desafios Personalizados**: Receba desafios adaptados ao seu nível e área de atuação
