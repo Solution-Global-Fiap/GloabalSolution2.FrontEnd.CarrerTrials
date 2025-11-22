@@ -7,9 +7,9 @@ CareerTrials é uma plataforma inovadora que conecta desenvolvedores com desafio
 ![CareerTrials](./public/Tela.png)
 
 ## Importante:
- -- **Temos uma integração com a IA do Gemini, por favor tomar cuidado com a quantidade de uso na funcionalidade de gerar desafios, para que não acabe os tokens diários gratuitos**
- -- **Usuário Oficial para Logar**: Email: SenhaWesley123 Senha: SenhaWesley123 ** Caso vocês queiram logar com outro usuário basta ir no arquivo users.js e escolher qualquer um dos 60 para logar**
- -- **Caso queira rodar totalmente local o trabalho e quiser gerar desafios terá que clonar o seguinte repositório: https://github.com/Solution-Global-Fiap/GlobalSolution2.PythonAgno.CareerTrials e seguir o seu ReadMe** 
+ - **Temos uma integração com a IA do Gemini, por favor tomar cuidado com a quantidade de uso na funcionalidade de gerar desafios, para que não acabe os tokens diários gratuitos**
+ - **Usuário Oficial para Logar**: Email: SenhaWesley123 Senha: SenhaWesley123  **Caso vocês queiram logar com outro usuário basta ir no arquivo users.js e escolher qualquer um dos 60 para logar**
+ - **Caso queira rodar totalmente local o trabalho e quiser gerar desafios terá que clonar o seguinte repositório: https://github.com/Solution-Global-Fiap/GlobalSolution2.PythonAgno.CareerTrials e seguir o seu ReadMe** 
 
 ## ✨ Funcionalidades
 
