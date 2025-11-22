@@ -18,3 +18,41 @@ export function completeChallenge(userId, challenge) {
 
   return { alreadyCompleted: false, updatedUser: user };
 }
+
+
+export function calculateDynamicLevel(userXP, challenges) {
+  const xpRequirements = getXpRequirementsByLevel(challenges);
+
+  let level = 1;
+  let remainingXP = userXP;
+
+  while (xpRequirements[level] !== undefined && remainingXP >= xpRequirements[level]) {
+    remainingXP -= xpRequirements[level];
+    level++;
+  }
+
+  const xpForNext = xpRequirements[level] || 0;
+  const currentLevelXP = remainingXP;
+  const progress = xpForNext > 0 ? (currentLevelXP / xpForNext) * 100 : 100;
+
+  return {
+    level,
+    currentLevelXP,
+    xpForNext,
+    progress
+  };
+}
+
+export function getXpRequirementsByLevel(challenges) {
+  const xpByLevel = {};
+
+  challenges.forEach(ch => {
+    if (!xpByLevel[ch.level]) {
+      xpByLevel[ch.level] = 0;
+    }
+    xpByLevel[ch.level] += ch.xp;
+  });
+
+  return xpByLevel;
+}
+

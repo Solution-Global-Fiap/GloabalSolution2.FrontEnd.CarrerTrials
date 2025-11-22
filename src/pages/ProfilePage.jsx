@@ -4,7 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getUser } from "../hooks/useAuth";
+import { getUser, getStoredChallenges } from "../hooks/useAuth";
+import { calculateDynamicLevel } from "@/utils/updateXP";
 import {
   Trophy,
   ChevronsLeftRight,
@@ -39,13 +40,15 @@ export default function ProfilePage() {
 
   if (!user) return <p className="text-center mt-20">Carregando perfil...</p>;
 
-  const XP_PER_LEVEL = 500;
+  const challengesDone = getStoredChallenges() || [];
+  const userXP = user.xp || 0;
 
-  const level = user.level || 1;
-  const xp = user.xp || 0;
-
-  const currentLevelXP = xp % XP_PER_LEVEL;
-  const levelProgress = (currentLevelXP / XP_PER_LEVEL) * 100;
+  const {
+    level,
+    currentLevelXP,
+    xpForNext,
+    progress
+  } = calculateDynamicLevel(userXP, challengesDone);
 
   return (
     <div className="space-y-8 my-20 ">
@@ -98,13 +101,13 @@ export default function ProfilePage() {
                 <span style={{ color: "var(--subtle-text)" }}>
                   Progresso para Level {level + 1}
                 </span>
-                <span>{Math.round(levelProgress)}%</span>
+                <span>{Math.round(progress)}%</span>
               </div>
 
-              <Progress value={levelProgress} className="h-3" />
+              <Progress value={progress} className="h-3" />
 
               <p className="text-sm" style={{ color: "var(--subtle-text)" }}>
-                XP Total: <b>{xp}</b> • Level Atual: <b>{level}</b>
+                XP: <b>{currentLevelXP}</b> / {xpForNext}  • Level Atual: <b>{level}</b>
               </p>
             </div>
           </div>
